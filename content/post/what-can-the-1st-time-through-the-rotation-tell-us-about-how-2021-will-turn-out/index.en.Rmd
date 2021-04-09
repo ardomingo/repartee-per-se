@@ -1,0 +1,326 @@
+---
+title: What can the first time through the rotation tell us about how 2021 will turn
+  out?
+author: AR Domingo
+date: '2021-04-08'
+slug: [first-time-through-the-rotation-2021]
+categories: [MLB, R]
+tags:
+  - Baseball
+  - kableExtra
+  - ggplot2
+---
+
+<center>
+
+### The Night is Young
+
+</center>
+
+The very young 2021 MLB season has barely made it into its first full week, but there are a few preliminary numbers that can be early indicators of where trends may be headed.  In recent years, I've begun to examine the first few weeks of each season to see in there is any insight into full season outcome trends.  After only about a single time through each teams rotation (games played from April 1, 2021 through games on April 5, 2021), there are glimpses of what we might see materialize.
+
+```{r setup, echo=FALSE, message=FALSE, warning=FALSE, cache=TRUE, include=FALSE}
+
+
+library(tidyverse)
+library(magrittr)
+library(scales)
+library(kableExtra)
+library(httr)
+library(ggthemes)
+library(plotly)
+
+#Initialize
+setwd("X:/OneDrive/02. Data")
+
+options(scipen=999)
+
+DataDate <- as.Date("2021-04-06")
+
+
+####Prep Rotowire data in csv formats (NOTE: Should make available on github)
+
+#Get 2021 data
+
+pitching <- 
+  read.csv("X:/OneDrive/02. Data/Baseball Data/Rotowire Stats/mlb-player-stats-P-2021.csv")
+
+starters <- filter(pitching, GS >= 1 & GS < 2)
+
+
+#Create dataframe for table of totals, averages, etc.
+
+sumIP <- format(round(sum(starters$IP), digits = 2), nsmall = 1)
+sumGS <- round(sum(starters$GS))
+avgIP <- format(round(sum(starters$IP) / sumGS, digits = 2), nsmall = 2)
+sumW <- sum(starters$W)
+sumL <- sum(starters$L)
+dec_perc <- percent((sumW + sumL) / sumGS)
+sumK <- round((sum(starters$K) / sum(starters$IP)*9), digits = 3)
+sumBB <-round((sum(starters$BB) / sum(starters$IP)*9), digits = 3)
+sumHR <- format(round((sum(starters$HR) / sum(starters$IP)*9), digits = 3), nsmall = 2)
+sumER <- format(round(sum(starters$ER), digits = 2), nsmall = 1)
+calcERA <- format(round(sum(starters$ER) / sum(starters$IP) * 9, digits = 2), nsmall = 2)
+
+
+Stat_Pitching <- c("GS", "Avg IP", "W", "L", "K/9", "BB/9", "HR/9", "ER", "IP", "ERA")
+
+MLB2021 <- c(sumGS, avgIP, sumW, sumL, dec_perc, sumK, sumBB, sumHR, sumER, sumIP, calcERA)
+MLB2021
+
+
+#Get 2020 data
+
+pitching2020 <- 
+  read.csv("X:/OneDrive/02. Data/Baseball Data/Rotowire Stats/mlb-player-stats-P-2020.csv")
+
+starters2020 <- filter(pitching2020, GS >= 10)
+
+
+sumIP2020 <- format(round(sum(starters2020$IP), digits = 2), nsmall = 1)
+sumGS2020 <- round(sum(starters2020$GS))
+avgIP2020 <- format(round(sum(starters2020$IP) / sumGS2020, digits = 2), nsmall = 2)
+sumW2020 <- sum(starters2020$W)
+sumL2020 <- sum(starters2020$L)
+dec_perc2020 <- percent((sumW2020 + sumL2020) / sumGS2020)
+sumK2020 <- round((sum(starters2020$K) / sum(starters2020$IP)*9), digits = 3)
+sumBB2020 <-round((sum(starters2020$BB) / sum(starters2020$IP)*9), digits = 3)
+sumHR2020 <- format(round((sum(starters2020$HR) / sum(starters2020$IP)*9), digits = 3), nsmall = 2)
+sumER2020 <- format(round(sum(starters2020$ER), digits = 2), nsmall = 1)
+calcERA2020 <- format(round(sum(starters2020$ER) / sum(starters2020$IP) * 9, digits = 2), nsmall = 2)
+
+
+MLB2020 <- 
+  c(sumGS2020, avgIP2020, sumW2020, sumL2020, dec_perc2020, sumK2020, sumBB2020, 
+    sumHR2020, sumER2020, sumIP2020, calcERA2020)
+
+
+
+#Get 2019 data
+
+pitching2019 <- 
+  read.csv("X:/OneDrive/02. Data/Baseball Data/Rotowire Stats/mlb-player-stats-P-2019.csv")
+
+starters2019 <- filter(pitching2019, GS >= 10)
+
+
+sumIP2019 <- format(round(sum(starters2019$IP), digits = 2), nsmall = 1)
+sumGS2019 <- round(sum(starters2019$GS))
+avgIP2019 <- format(round(sum(starters2019$IP) / sumGS2019, digits = 2), nsmall = 2)
+sumW2019 <- sum(starters2019$W)
+sumL2019 <- sum(starters2019$L)
+dec_perc2019 <- percent((sumW2019 + sumL2019) / sumGS2019)
+sumK2019 <- round((sum(starters2019$K) / sum(starters2019$IP)*9), digits = 3)
+sumBB2019 <-round((sum(starters2019$BB) / sum(starters2019$IP)*9), digits = 3)
+sumHR2019 <- format(round((sum(starters2019$HR) / sum(starters2019$IP)*9), digits = 3), nsmall = 2)
+sumER2019 <- format(round(sum(starters2019$ER), digits = 2), nsmall = 1)
+calcERA2019 <- format(round(sum(starters2019$ER) / sum(starters2019$IP) * 9, digits = 2), nsmall = 2)
+
+
+MLB2019 <- 
+  c(sumGS2019, avgIP2019, sumW2019, sumL2019, dec_perc2019, sumK2019, sumBB2019, 
+    sumHR2019, sumER2019, sumIP2019, calcERA2019)
+
+
+
+#Get 2018 data
+
+pitching2018 <- 
+  read.csv("X:/OneDrive/02. Data/Baseball Data/Rotowire Stats/mlb-player-stats-P-2018.csv")
+
+starters2018 <- filter(pitching2018, GS >= 10)
+
+
+sumIP2018 <- format(round(sum(starters2018$IP), digits = 2), nsmall = 1)
+sumGS2018 <- round(sum(starters2018$GS))
+avgIP2018 <- format(round(sum(starters2018$IP) / sumGS2018, digits = 2), nsmall = 2)
+sumW2018 <- sum(starters2018$W)
+sumL2018 <- sum(starters2018$L)
+dec_perc2018 <- percent((sumW2018 + sumL2018) / sumGS2018)
+sumK2018 <- round((sum(starters2018$K) / sum(starters2018$IP)*9), digits = 3)
+sumBB2018 <-round((sum(starters2018$BB) / sum(starters2018$IP)*9), digits = 3)
+sumHR2018 <- format(round((sum(starters2018$HR) / sum(starters2018$IP)*9), digits = 3), nsmall = 2)
+sumER2018 <- format(round(sum(starters2018$ER), digits = 2), nsmall = 1)
+calcERA2018 <- format(round(sum(starters2018$ER) / sum(starters2018$IP) * 9, digits = 2), nsmall = 2)
+
+
+MLB2018 <- 
+  c(sumGS2018, avgIP2018, sumW2018, sumL2018, dec_perc2018, sumK2018, sumBB2018, 
+    sumHR2018, sumER2018, sumIP2018, calcERA2018)
+
+
+
+
+#Get 2017 data
+
+pitching2017 <- 
+  read.csv("X:/OneDrive/02. Data/Baseball Data/Rotowire Stats/mlb-player-stats-P-2017.csv")
+
+starters2017 <- filter(pitching2017, GS >= 10)
+
+
+sumIP2017 <- format(round(sum(starters2017$IP), digits = 2), nsmall = 1)
+sumGS2017 <- round(sum(starters2017$GS))
+avgIP2017 <- format(round(sum(starters2017$IP) / sumGS2017, digits = 2), nsmall = 2)
+sumW2017 <- sum(starters2017$W)
+sumL2017 <- sum(starters2017$L)
+dec_perc2017 <- percent((sumW2017 + sumL2017) / sumGS2017)
+sumK2017 <- round((sum(starters2017$K) / sum(starters2017$IP)*9), digits = 3)
+sumBB2017 <-round((sum(starters2017$BB) / sum(starters2017$IP)*9), digits = 3)
+sumHR2017 <- format(round((sum(starters2017$HR) / sum(starters2017$IP)*9), digits = 3), nsmall = 2)
+sumER2017 <- format(round(sum(starters2017$ER), digits = 2), nsmall = 1)
+calcERA2017 <- format(round(sum(starters2017$ER) / sum(starters2017$IP) * 9, digits = 2), nsmall = 2)
+
+
+MLB2017 <- 
+  c(sumGS2017, avgIP2017, sumW2017, sumL2017, dec_perc2017, sumK2017, sumBB2017, 
+    sumHR2017, sumER2017, sumIP2017, calcERA2017)
+
+
+
+#Get 2016 data
+
+pitching2016 <- 
+  read.csv("X:/OneDrive/02. Data/Baseball Data/Rotowire Stats/mlb-player-stats-P-2016.csv")
+
+starters2016 <- filter(pitching2016, GS >= 10)
+
+
+sumIP2016 <- format(round(sum(starters2016$IP), digits = 2), nsmall = 1)
+sumGS2016 <- round(sum(starters2016$GS))
+avgIP2016 <- format(round(sum(starters2016$IP) / sumGS2016, digits = 2), nsmall = 2)
+sumW2016 <- sum(starters2016$W)
+sumL2016 <- sum(starters2016$L)
+dec_perc2016 <- percent((sumW2016 + sumL2016) / sumGS2016)
+sumK2016 <- round((sum(starters2016$K) / sum(starters2016$IP)*9), digits = 3)
+sumBB2016 <-round((sum(starters2016$BB) / sum(starters2016$IP)*9), digits = 3)
+sumHR2016 <- format(round((sum(starters2016$HR) / sum(starters2016$IP)*9), digits = 3), nsmall = 2)
+sumER2016 <- format(round(sum(starters2016$ER), digits = 2), nsmall = 1)
+calcERA2016 <- format(round(sum(starters2016$ER) / sum(starters2016$IP) * 9, digits = 2), nsmall = 2)
+
+
+MLB2016 <- 
+  c(sumGS2016, avgIP2016, sumW2016, sumL2016, dec_perc2016, sumK2016, sumBB2016, 
+    sumHR2016, sumER2016, sumIP2016, calcERA2016)
+
+
+
+#Get 2015 data
+
+pitching2015 <- 
+  read.csv("X:/OneDrive/02. Data/Baseball Data/Rotowire Stats/mlb-player-stats-P-2015.csv")
+
+starters2015 <- filter(pitching2015, GS >= 10)
+
+
+sumIP2015 <- format(round(sum(starters2015$IP), digits = 2), nsmall = 1)
+sumGS2015 <- round(sum(starters2015$GS))
+avgIP2015 <- format(round(sum(starters2015$IP) / sumGS2015, digits = 2), nsmall = 2)
+sumW2015 <- sum(starters2015$W)
+sumL2015 <- sum(starters2015$L)
+dec_perc2015 <- percent((sumW2015 + sumL2015) / sumGS2015)
+sumK2015 <- round((sum(starters2015$K) / sum(starters2015$IP)*9), digits = 3)
+sumBB2015 <-round((sum(starters2015$BB) / sum(starters2015$IP)*9), digits = 3)
+sumHR2015 <- format(round((sum(starters2015$HR) / sum(starters2015$IP)*9), digits = 3), nsmall = 2)
+sumER2015 <- format(round(sum(starters2015$ER), digits = 2), nsmall = 1)
+calcERA2015 <- format(round(sum(starters2015$ER) / sum(starters2015$IP) * 9, digits = 2), nsmall = 2)
+
+
+MLB2015 <- 
+  c(sumGS2015, avgIP2015, sumW2015, sumL2015, dec_perc2015, sumK2015, sumBB2015, 
+    sumHR2015, sumER2015, sumIP2015, calcERA2015)
+
+
+
+
+```
+<br>
+As has been the trend for several years, or evens decades now, the average innings per start looks to continue downward.  However, this might be more affected by the increasingly common use of the "opener" among many clubs.  Also, pitcher wins and losses tend to be simply less important in judging talent than they once were, so managers are less inclined to keep a starter in the game just to preserve the chance at notching a win.  As a result, the percentage of the time that the starter comes away with a decision (W or L) has started below 60% of the time.  This, coupled with the opener strategy, will have the added effect of lowering the average outing even further.<br><br>
+
+```{r kable_table, echo=FALSE, message=FALSE, warning=FALSE, out.height='100%', out.width='100%'}
+
+library(kableExtra)
+library(tidyverse)
+
+pitchingtable <- matrix(c(MLB2021, MLB2020, MLB2019, MLB2018, MLB2017, MLB2016, MLB2015), 
+                        byrow = FALSE, ncol = 7)
+
+colnames(pitchingtable) <- c("2021", "2020", "2019", "2018", "2017", "2016", "2015")
+rownames(pitchingtable) <- c("GS", "Avg IP/GS", "W", "L", "Decision %", "K/9", "BB/9", "HR/9", "ER", "IP", "ERA")
+
+
+ptable1 <- as.table(pitchingtable)
+
+
+
+p_tab1 <- ptable1 %>%
+  kbl()
+
+p_tab1
+
+
+```
+
+<br>
+
+<center>
+
+#### Ks, BBs, and ERAs
+
+</center>
+
+
+The other obvious confirmation we see after the first time around is that strikeouts are going up...still.  Not a shocking development, and the rate of increase over the last several seasons has been remarkably stable.  
+
+
+And while it looks like walks have been on the decline in recent years, the per 9 inning rate this year is considerably high compared to the last several campaigns.  
+
+
+The ERA in the early going seems to jump out, but this will pretty quickly regress to the mean and level out to a clear picture of any variance as more data are collected. <br><br>
+
+
+<center>
+```{r chart_party, echo=FALSE, message=FALSE, warning=FALSE, out.height='80%', out.width='80%'}
+
+library(plotly)
+
+
+ptable_df <- as.data.frame(ptable1)
+
+ptable_df1 <- ptable_df %>% 
+                rename(Statistic = Var1,
+                       Year = Var2,
+                       Value = Freq
+                )
+
+
+sorted_table <- 
+ptable_df1 %>% 
+  filter(Statistic == "Avg IP/GS" | Statistic == "K/9" | Statistic == "BB/9" | Statistic == "HR/9") %>% 
+    group_by(Statistic) %>% 
+      summarise(Year, Value)
+
+
+avgs_graph <- 
+ggplot(sorted_table, aes(Year, Value, fill = Statistic)) +
+        geom_bar(stat = "identity", position = "dodge") +
+        theme_minimal() +
+        scale_fill_brewer(palette = "Dark2") +
+        theme(legend.title = element_blank()) +
+        labs(title = "Per 9 Pitching Averages (2015 - 2021)",
+             subtitle = "After First Rotation of 2021")
+
+
+ggplotly(avgs_graph, tooltip = FALSE) %>% 
+  config(displayModeBar = F)
+
+
+```
+</center>
+
+<br><br><br>
+
+<center>
+<footer>&copy; *Copyright 2021* ***AR Domingo***</footer>
+</center>
+<br><br><br>

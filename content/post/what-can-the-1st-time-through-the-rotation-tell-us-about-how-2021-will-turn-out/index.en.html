@@ -1,0 +1,371 @@
+---
+title: What can the first time through the rotation tell us about how 2021 will turn
+  out?
+author: AR Domingo
+date: '2021-04-08'
+slug: [first-time-through-the-rotation-2021]
+categories: [MLB, R]
+tags:
+  - Baseball
+  - kableExtra
+  - ggplot2
+---
+
+<script src="{{< blogdown/postref >}}index.en_files/header-attrs/header-attrs.js"></script>
+<script src="{{< blogdown/postref >}}index.en_files/kePrint/kePrint.js"></script>
+<link href="{{< blogdown/postref >}}index.en_files/lightable/lightable.css" rel="stylesheet" />
+<script src="{{< blogdown/postref >}}index.en_files/htmlwidgets/htmlwidgets.js"></script>
+<script src="{{< blogdown/postref >}}index.en_files/plotly-binding/plotly.js"></script>
+<script src="{{< blogdown/postref >}}index.en_files/typedarray/typedarray.min.js"></script>
+<script src="{{< blogdown/postref >}}index.en_files/jquery/jquery.min.js"></script>
+<link href="{{< blogdown/postref >}}index.en_files/crosstalk/css/crosstalk.css" rel="stylesheet" />
+<script src="{{< blogdown/postref >}}index.en_files/crosstalk/js/crosstalk.min.js"></script>
+<link href="{{< blogdown/postref >}}index.en_files/plotly-htmlwidgets-css/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="{{< blogdown/postref >}}index.en_files/plotly-main/plotly-latest.min.js"></script>
+
+
+<center>
+<div id="the-night-is-young" class="section level3">
+<h3>The Night is Young</h3>
+</center>
+<p>The very young 2021 MLB season has barely made it into its first full week, but there are a few preliminary numbers that can be early indicators of where trends may be headed. In recent years, I’ve begun to examine the first few weeks of each season to see in there is any insight into full season outcome trends. After only about a single time through each teams rotation (games played from April 1, 2021 through games on April 5, 2021), there are glimpses of what we might see materialize.</p>
+<p><br>
+As has been the trend for several years, or evens decades now, the average innings per start looks to continue downward. However, this might be more affected by the increasingly common use of the “opener” among many clubs. Also, pitcher wins and losses tend to be simply less important in judging talent than they once were, so managers are less inclined to keep a starter in the game just to preserve the chance at notching a win. As a result, the percentage of the time that the starter comes away with a decision (W or L) has started below 60% of the time. This, coupled with the opener strategy, will have the added effect of lowering the average outing even further.<br><br></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:left;">
+2021
+</th>
+<th style="text-align:left;">
+2020
+</th>
+<th style="text-align:left;">
+2019
+</th>
+<th style="text-align:left;">
+2018
+</th>
+<th style="text-align:left;">
+2017
+</th>
+<th style="text-align:left;">
+2016
+</th>
+<th style="text-align:left;">
+2015
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+GS
+</td>
+<td style="text-align:left;">
+118
+</td>
+<td style="text-align:left;">
+918
+</td>
+<td style="text-align:left;">
+4104
+</td>
+<td style="text-align:left;">
+4272
+</td>
+<td style="text-align:left;">
+4294
+</td>
+<td style="text-align:left;">
+4287
+</td>
+<td style="text-align:left;">
+4304
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Avg IP/GS
+</td>
+<td style="text-align:left;">
+4.71
+</td>
+<td style="text-align:left;">
+5.41
+</td>
+<td style="text-align:left;">
+5.65
+</td>
+<td style="text-align:left;">
+5.70
+</td>
+<td style="text-align:left;">
+5.77
+</td>
+<td style="text-align:left;">
+5.94
+</td>
+<td style="text-align:left;">
+6.07
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+W
+</td>
+<td style="text-align:left;">
+30
+</td>
+<td style="text-align:left;">
+320
+</td>
+<td style="text-align:left;">
+1412
+</td>
+<td style="text-align:left;">
+1456
+</td>
+<td style="text-align:left;">
+1541
+</td>
+<td style="text-align:left;">
+1568
+</td>
+<td style="text-align:left;">
+1574
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+L
+</td>
+<td style="text-align:left;">
+38
+</td>
+<td style="text-align:left;">
+292
+</td>
+<td style="text-align:left;">
+1348
+</td>
+<td style="text-align:left;">
+1415
+</td>
+<td style="text-align:left;">
+1510
+</td>
+<td style="text-align:left;">
+1506
+</td>
+<td style="text-align:left;">
+1501
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Decision %
+</td>
+<td style="text-align:left;">
+58%
+</td>
+<td style="text-align:left;">
+67%
+</td>
+<td style="text-align:left;">
+67%
+</td>
+<td style="text-align:left;">
+67%
+</td>
+<td style="text-align:left;">
+71%
+</td>
+<td style="text-align:left;">
+72%
+</td>
+<td style="text-align:left;">
+71%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+K/9
+</td>
+<td style="text-align:left;">
+9.823
+</td>
+<td style="text-align:left;">
+9.008
+</td>
+<td style="text-align:left;">
+8.678
+</td>
+<td style="text-align:left;">
+8.337
+</td>
+<td style="text-align:left;">
+8.094
+</td>
+<td style="text-align:left;">
+7.848
+</td>
+<td style="text-align:left;">
+7.488
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+BB/9
+</td>
+<td style="text-align:left;">
+3.761
+</td>
+<td style="text-align:left;">
+2.802
+</td>
+<td style="text-align:left;">
+2.836
+</td>
+<td style="text-align:left;">
+2.964
+</td>
+<td style="text-align:left;">
+3.123
+</td>
+<td style="text-align:left;">
+2.888
+</td>
+<td style="text-align:left;">
+2.667
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+HR/9
+</td>
+<td style="text-align:left;">
+1.20
+</td>
+<td style="text-align:left;">
+1.205
+</td>
+<td style="text-align:left;">
+1.398
+</td>
+<td style="text-align:left;">
+1.172
+</td>
+<td style="text-align:left;">
+1.299
+</td>
+<td style="text-align:left;">
+1.189
+</td>
+<td style="text-align:left;">
+1.026
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ER
+</td>
+<td style="text-align:left;">
+277.0
+</td>
+<td style="text-align:left;">
+2146.0
+</td>
+<td style="text-align:left;">
+11120.0
+</td>
+<td style="text-align:left;">
+10941.0
+</td>
+<td style="text-align:left;">
+12058.0
+</td>
+<td style="text-align:left;">
+11883.0
+</td>
+<td style="text-align:left;">
+11493.0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+IP
+</td>
+<td style="text-align:left;">
+555.2
+</td>
+<td style="text-align:left;">
+4968.6
+</td>
+<td style="text-align:left;">
+23181.3
+</td>
+<td style="text-align:left;">
+24358.9
+</td>
+<td style="text-align:left;">
+24765.2
+</td>
+<td style="text-align:left;">
+25446.2
+</td>
+<td style="text-align:left;">
+26138.9
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ERA
+</td>
+<td style="text-align:left;">
+4.49
+</td>
+<td style="text-align:left;">
+3.89
+</td>
+<td style="text-align:left;">
+4.32
+</td>
+<td style="text-align:left;">
+4.04
+</td>
+<td style="text-align:left;">
+4.38
+</td>
+<td style="text-align:left;">
+4.20
+</td>
+<td style="text-align:left;">
+3.96
+</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<center>
+<div id="ks-bbs-and-eras" class="section level4">
+<h4>Ks, BBs, and ERAs</h4>
+</center>
+<p>The other obvious confirmation we see after the first time around is that strikeouts are going up…still. Not a shocking development, and the rate of increase over the last several seasons has been remarkably stable.</p>
+<p>And while it looks like walks have been on the decline in recent years, the per 9 inning rate this year is considerably high compared to the last several campaigns.</p>
+<p>The ERA in the early going seems to jump out, but this will pretty quickly regress to the mean and level out to a clear picture of any variance as more data are collected. <br><br></p>
+<center>
+<div id="htmlwidget-1" style="width:80%;height:80%;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-1">{"x":{"data":[{"orientation":"v","width":[0.225,0.225,0.225,0.225,0.225,0.225,0.225],"base":[0,0,0,0,0,0,0],"x":[1.1125,2.1125,3.1125,4.1125,5.1125,6.1125,7.1125],"y":[15,16,17,18,19,20,21],"text":"","type":"bar","marker":{"autocolorscale":false,"color":"rgba(27,158,119,1)","line":{"width":1.88976377952756,"color":"transparent"}},"name":"Avg IP/GS","legendgroup":"Avg IP/GS","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":[0.225,0.225,0.225000000000001,0.225,0.225,0.225,0.225],"base":[0,0,0,0,0,0,0],"x":[1.3375,2.3375,3.3375,4.3375,5.3375,6.3375,7.3375],"y":[28,27,26,25,24,23,22],"text":"","type":"bar","marker":{"autocolorscale":false,"color":"rgba(217,95,2,1)","line":{"width":1.88976377952756,"color":"transparent"}},"name":"K/9","legendgroup":"K/9","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":[0.225,0.225,0.225,0.225,0.225,0.225,0.225],"base":[0,0,0,0,0,0,0],"x":[0.8875,1.8875,2.8875,3.8875,4.8875,5.8875,6.8875],"y":[14,9,10,12,13,11,8],"text":"","type":"bar","marker":{"autocolorscale":false,"color":"rgba(117,112,179,1)","line":{"width":1.88976377952756,"color":"transparent"}},"name":"BB/9","legendgroup":"BB/9","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":[0.225,0.225,0.225000000000001,0.225000000000001,0.225,0.225,0.225],"base":[0,0,0,0,0,0,0],"x":[0.6625,1.6625,2.6625,3.6625,4.6625,5.6625,6.6625],"y":[4,5,7,2,6,3,1],"text":"","type":"bar","marker":{"autocolorscale":false,"color":"rgba(231,41,138,1)","line":{"width":1.88976377952756,"color":"transparent"}},"name":"HR/9","legendgroup":"HR/9","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":43.7625570776256,"r":7.30593607305936,"b":40.1826484018265,"l":54.7945205479452},"font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"title":{"text":"Per 9 Pitching Averages (2015 - 2021)","font":{"color":"rgba(0,0,0,1)","family":"","size":17.5342465753425},"x":0,"xref":"paper"},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0.4,7.6],"tickmode":"array","ticktext":["2021","2020","2019","2018","2017","2016","2015"],"tickvals":[1,2,3,4,5,6,7],"categoryorder":"array","categoryarray":["2021","2020","2019","2018","2017","2016","2015"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.65296803652968,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176,"zeroline":false,"anchor":"y","title":{"text":"Year","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0,28.6],"tickmode":"array","ticktext":["1.026","1.172","1.189","1.20","1.205","1.299","1.398","2.667","2.802","2.836","2.888","2.964","3.123","3.761","4.71","5.41","5.65","5.70","5.77","5.94","6.07","7.488","7.848","8.094","8.337","8.678","9.008","9.823"],"tickvals":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28],"categoryorder":"array","categoryarray":["1.026","1.172","1.189","1.20","1.205","1.299","1.398","2.667","2.802","2.836","2.888","2.964","3.123","3.761","4.71","5.41","5.65","5.70","5.77","5.94","6.07","7.488","7.848","8.094","8.337","8.678","9.008","9.823"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.65296803652968,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176,"zeroline":false,"anchor":"x","title":{"text":"Value","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":true,"legend":{"bgcolor":null,"bordercolor":null,"borderwidth":0,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.689497716895},"y":1},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","showSendToCloud":false,"displayModeBar":false},"source":"A","attrs":{"14f04db478d9":{"x":{},"y":{},"fill":{},"type":"bar"}},"cur_data":"14f04db478d9","visdat":{"14f04db478d9":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</center>
+<p><br><br><br></p>
+<center>
+<footer>
+© <em>Copyright 2021</em> <strong><em>AR Domingo</em></strong>
+</footer>
+</center>
+<p><br><br><br></p>
+</div>
+</div>
