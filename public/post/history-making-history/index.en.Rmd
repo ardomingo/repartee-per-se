@@ -1,0 +1,96 @@
+---
+title: History Making History
+author: AR Domingo
+date: '2021-03-23'
+slug: [history-making-history]
+categories:
+  - MLB
+tags:
+  - Baseball
+---
+
+
+<center>
+### History Making History
+</center>
+
+
+Only these six players in MLB history have ever reached the career milestone of at least 3,000 hits AND 500 home runs...only six.  It is one of the rarest achievements in all of professional sports.<br><br><br>
+
+
+```{r init, message=FALSE, warning=FALSE, include=FALSE}
+
+
+library(Lahman)
+library(tidyverse)
+library(kableExtra)
+library(DT)
+data(Batting)
+
+
+MiguelCabrera <- 
+  Batting %>% 
+    filter(playerID == "cabremi01") 
+
+AlbertPujols <- 
+  Batting %>% 
+    filter(playerID == "pujolal01")
+
+HankAaron <- 
+  Batting %>% 
+  filter(playerID == "aaronha01")
+
+AlexRodriguez <- 
+  Batting %>% 
+  filter(playerID == "rodrial01")
+
+WillieMays <- 
+  Batting %>% 
+  filter(playerID == "mayswi01")
+
+RafaelPalmeiro <- 
+  Batting %>% 
+  filter(playerID == "palmera01")
+
+EddieMurray <- 
+  Batting %>% 
+  filter(playerID == "murraed02") 
+
+
+```
+
+
+
+```{r five_three_club table, echo=FALSE, message=FALSE, warning=FALSE}
+
+
+#Group and create tables
+combo <- 
+  left_join(Batting, People, by = "playerID") %>% 
+    rename(First = nameFirst, Last = nameLast)
+
+club <- c("pujolal01", "aaronha01", "rodrial01", "mayswi01", "palmera01", "murraed02")
+
+five_three_club <- 
+  combo %>% 
+    filter(playerID %in% club) %>% 
+      group_by(Last, First) %>% 
+      summarize(sum(H), sum(HR))
+
+tab_1 <- 
+  five_three_club %>% 
+  kbl() %>% 
+  kable_styling(full_width = F)
+
+tab_1
+
+```
+
+
+
+
+Miguel Cabrera of the Detroit Tigers is entering this season with career totals of **2,866 hits** and **487 home runs** - so he is within reach of BOTH those marks this season, and his season averages are quite comfortably above what he needs to reach them.<br>
+
+But here's the more incredible thing...none, not a single one, of those six players in the 3000/500 club achieved both those milestones in the **SAME** season...<br>
+
+Miggy, make some history this year!  
