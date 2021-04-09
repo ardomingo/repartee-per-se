@@ -19,10 +19,7 @@ PRIMARY CONTRIBUTOR
 
 AR Domingo
 
-<img src="static/images/ARDomingo.jpg" alt="AD" width="25%" height="25%"/>
-
-
-
+![](ARDomingo1.jpg)
 
 
 
