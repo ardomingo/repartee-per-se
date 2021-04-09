@@ -9,6 +9,16 @@ tags:
   - Baseball
 ---
 
+
+```{r setup, include=FALSE}
+
+knitr::include_graphics("x.png")
+
+```
+
+
+
+
 <center>
 #### A Game of Arc-Seconds
 </center>
@@ -22,6 +32,4 @@ Baseball is unique among the major sports. In basketball, football, hockey - the
 However, the key is that baseball is a game of failure; and more failure, and more still. Arguably more failure than in the other sports. But a short series of successes, 2 or 3 (sometimes just one), can alter the entire complexion of a game, or a playoff series. If football is a game of inches, baseball is a game of arc seconds.  The angle of a grand salami and the angle of a bases-loaded, 2-out popup is literally an infinitesimal. It is a game where the margin between fulfillment and founder is razor thin.
 
 The Dodgers know this. Listen, I like the Braves, they’re a great team…but it’s been ages since the Dodgers brought it home. So Blue Crew, I hope you bring it home like in the 80s.
-
-
 
