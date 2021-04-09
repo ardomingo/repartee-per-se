@@ -15,13 +15,3 @@ HUGO_ENV = "production"
 
 
 
-[context.production.environment]
-  HUGO_VERSION = "0.82.0" # if older, use format: 0.53 (no trailing zero)
-  HUGO_ENV = "production"
-  HUGO_ENABLEGITINFO = "true"
-  
-[context.branch-deploy.environment]
-  HUGO_VERSION = "0.82.0" # if older, use format: 0.53 (no trailing zero)
-
-[context.deploy-preview.environment]
-  HUGO_VERSION = "0.82.0"
