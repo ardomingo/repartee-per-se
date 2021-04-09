@@ -12,7 +12,7 @@ tags:
 
 ```{r setup, include=FALSE}
 
-knitr::include_graphics("x.png")
+knitr::include_graphics(c("KekistanVRiechsflagg.jpg", "Ansar_Ghazwat-ul-Hind_Flag.png", "Confederate with M16.jpg"))
 
 ```
 
@@ -33,10 +33,12 @@ The flag of Kekistan and the “Come and Take It” flag were prominent, and are
 ![](images/KekistanVRiechsflagg.jpg)
 </center>
 
-<center>
-![](images/Ansar_Ghazwat-ul-Hind_Flag.png)
-</center>
 
+![](images/Ansar_Ghazwat-ul-Hind_Flag.png)
+
+
+
+![](images/Confederate with M16.jpg)
 
 
 

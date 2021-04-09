@@ -9,6 +9,16 @@ tags:
   - Baseball
 ---
 
+
+```{r setup, include=FALSE}
+
+knitr::include_graphics("x.png")
+
+```
+
+
+
+
 <center>
 #### A Game of Arc-Seconds
 </center>
