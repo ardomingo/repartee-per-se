@@ -18,6 +18,14 @@ This blog is a collection of articles in the data journalism style across a rang
 PRIMARY CONTRIBUTOR
 
 AR Domingo
+
+<img src="static/images/ARDomingo.jpg" alt="AD" width="25%" height="25%"/>
+
+
+
+
+
+
 * [GitHub](https://github.com/ardomingo/)
 * [LinkedIn](https://www.linkedin.com/in/andres-domingo-75682343/)
 * [Facebook](https://www.facebook.com/andy.domingo/)
