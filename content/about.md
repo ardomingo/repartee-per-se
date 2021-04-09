@@ -22,7 +22,6 @@ AR Domingo
 ![](ARDomingo1.jpg)
 
 
-
 * [GitHub](https://github.com/ardomingo/)
 * [LinkedIn](https://www.linkedin.com/in/andres-domingo-75682343/)
 * [Facebook](https://www.facebook.com/andy.domingo/)
