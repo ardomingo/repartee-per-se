@@ -19,6 +19,10 @@ tags:
 
 <center>
 # How the party strategy has been failing for 25 years
+</center><br>
+
+<center>
+#### ***by A.R. Domingo***
 </center>
 
 ```{r setup, include=FALSE}

@@ -28,6 +28,7 @@ h4.author { /* Header 4 - and the author and data headers use this too  */
   color: Gray;
   text-align: center;
 }
+
 h4.date { /* Header 4 -   */
   font-size: 14px;
   color: Gray;
@@ -51,4 +52,10 @@ footer {
 font-size: 14px;
 color: mediumblue;
 }
+
+h4 { /* Header 4 - and the author and data headers use this too  */
+    font-size: 16px;
+    text-align: center;
+  }
+
 </style>
