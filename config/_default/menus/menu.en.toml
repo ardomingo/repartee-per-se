@@ -8,15 +8,15 @@
 #  url = "post/rich-content/"
 #  weight = -109
 
-#[[main]]
-#  name = "Featured"
-#  identifier = "Featured"
-#  weight = -109
+[[main]]
+name = "Featured"
+  identifier = "Featured"
+  weight = -109
 
-#[[main]]
-#  name = "Featured"
-#  identifier = "Featured"
-#  url = "featured/"
+[[main]]
+  name = "Featured"
+  identifier = "Featured"
+  url = "featured/"
 
 # Submenus are done this way: parent -> identifier
 [[main]]

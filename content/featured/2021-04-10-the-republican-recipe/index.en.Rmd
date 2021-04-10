@@ -1,0 +1,471 @@
+---
+title: The Republican Party has been baking the same cake for a quarter century, they've
+  just been turning up the heat
+subtitle: How the party strategy has been failing for 25 years 
+author: "<br>by ***A.R. DOMINGO***"
+date: '2021-02-25'
+slug: the-republican-recipe
+categories:
+  - Featured
+tags:
+  - Politics
+  - ggplot2
+---
+
+
+<html>
+    <link rel="stylesheet" href="recipe.css" />
+</html>
+
+<center>
+# How the party strategy has been failing for 25 years
+</center>
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+
+#setwd(file.path("C:", "Users", "andre", "OneDrive", "02. Data", "Partisan Lean Historical"))
+
+library(tidyverse)
+library(plotly)
+library(readxl)
+library(scales)
+library(ggthemes)
+library(extrafont)
+library(hrbrthemes)
+
+###font_import()  ---- EXECUTE only if extrafonts in just installed
+loadfonts(device="win") 
+
+
+#Import xlsx file for Pew data 1994 - 2019
+url <- 
+  "https://www.people-press.org/2020/06/02/in-changing-u-s-electorate-race-and-education-remain-stark-dividing-lines/"
+pew_data <- readxl::read_excel("X:/OneDrive/02. Data/Partisan Lean Historical/PewResearchPoll.xlsx")
+
+summary(pew_data)
+str(pew_data)
+pew_data_long <-  pivot_longer(pew_data,
+  cols = c("Rep/Lean Rep", "Dem/Lean Dem"),
+  names_to = "Party",
+  values_to = "%")
+  
+
+
+pew_data_long$Year <- lubridate::ymd(pew_data_long$Year, truncated = 2L)  
+pew_data_long$Year <- as.Date(pew_data_long$Year)
+
+
+#output: html_document
+```
+
+<br>
+
+<h3 class="heading"> The Recipe for Revolution</h3>
+
+
+
+It had been four decades of control.  Four uninterrupted decades.  And if not for two small, insignificant blips on the radar around mid-century, it would have been just over six.  That changed with a sweeping revolution in 1995, and the consequences that played out as a result of that monumental shift have left a visible trajectory, and a markedly unfavorable one.  It was the beginning of the short-term Faustian deal that traded political intensity to drive turnout in key areas, for a diminution of the overall base.  Now, they must reach to increasingly extreme constituencies in order to win or maintain power despite not just an ever-shrinking base, but a wholesale defection to the opposite party.
+
+Newt Gingrich, with his memorandum^[Source: *Language: A Key Mechanism of Control*, "https://www.transcend.org/tms/wp-content/uploads/2019/11/Newt-Gingrich-Language-A-Key-Mechanism-of-Control-1990.pdf"] titled “Language: A Key Mechanism of Control,” redefined the Republican agenda in the public relations battle.  His transformative style stoked an intensity that the party had not seen in the modern era.  It demonized the opposition, clearing the way for an easier path to dismissing compromise by making issues married to party, rather than to the merits of any particular proposal. This folded in the ingredients for a climate that is categorically anathema to American democracy, and has now risen to an untenable political landscape. If you try to point to single thread that started weaving the tapestry of division we see in America today, this shift in how the Republican Party simply spoke about the opposition party is a pretty strong candidate.
+
+Gingrich, with the aid of GOP pollster Frank Luntz, devised a strategy to utilize "contrasting words" and distributed the memo through GOPAC:
+
+>
+"Often we search hard for words to define our opponents. Sometimes we are hesitant to use contrast. Remember that creating a difference helps you. These are powerful words that can create a clear and easily understood contrast. Apply these to the opponent, their record, proposals and their party: decay, failure (fail) collapse(ing) deeper, crisis, urgent(cy), destructive, destroy, sick, pathetic, lie, liberal, they/them, unionized bureaucracy, "compassion" is not enough, betray, consequences, limit(s), shallow, traitors, sensationalists, endanger, coercion, hypocrisy, radical, threaten, devour, waste, corruption, incompetent, permissive attitude, destructive, impose, self-serving, greed, ideological, insecure, anti-(issue): flag, family, child, jobs; pessimistic, excuses, intolerant, stagnation, welfare, corrupt, selfish, insensitive, status quo, mandate(s) taxes, spend (ing) shame, disgrace, punish (poor...) bizarre, cynicism, cheat, steal, abuse of power, machine, bosses, obsolete, criminal rights, red tape, patronage."
+>
+ 
+It's easy to recognize these words from the right-wing lexicon now, but prior to 1995 they were not so common.  This campaign of verbal denigration became the party modus operandi, and the Republican Revolution was real when they finally won the majority in both the House of Representatives and the Senate in the 1994 election - *the first time in four decades*.  They would hold the House for the next 12 years, and the Senate in 10 of those 12.  For Gingrich, the newly minted Speaker of the House, it was time to get to work.  Deftly utilizing the contrasting words of his stratagem, he drove obstruction and division, and eventually mounted the longest government shutdown this country had, until then, ever seen.  It seemed to have yielded results in contentious budget negotiations with the Clinton administration by forcing the President to scale back his agenda by an order of magnitude, and also set the table for a balanced federal budget.  But while ostensibly pressing this advantage, the impeachment of President Clinton actually lost the Republicans five seats in the House.
+
+When Republicans took power of both Houses of Congress in 1995, the percentage of the electorate that called themselves Republicans reflected the tectonic shift that had just occurred when decades-long control was finally wrested from the Democrats.  A full forty-seven percent (47%) of registered voters identified with the party - but that has been the high mark for an entire generation now - and it doesn't look like it's heading anywhere but further down (by 2007, this support had cratered to a low of 39%).^[Source: Pew Research Center, "https://www.pewresearch.org/politics/2020/06/02/in-changing-u-s-electorate-race-and-education-remain-stark-dividing-lines/".  The data herein utilizes the Pew Research Center data which specifically provides respondents with a binary choice between Republican/Lean Republican or Democrat/Lean Democrat; the poll does provide crosstab data when given an additional choice of Independent, however, these particular data were not utilized here.]
+ 
+As generally happens, the party holding the White House tends to gain some support during the President's term while the opposing party loses some, if things are going well enough.  But in 1998, the year of the Clinton impeachment, Republican support dropped to the lowest mark (42%) it would see for nearly a decade.  While the Bush II administration may have made some progress to widen the party tent by reaching out to the Hispanic community, it suffered from two hot conflicts in the Middle East that dragged the party's popularity down with it.
+
+In the decades following the Republican Revolution, two periods of Republican resurgence have seen the party double-down on the Gingrichian approach, first with the Tea Party in 2010, and again with Trumpism in 2016.  The tactics are the nearly the same, but the temperature of the rhetoric was dialed up and the extremities were broadened.  This is the inevitable outcome when using anger, suspicion, and aggression to curry support - a larger number of people will be repulsed, but the ones who remain will be gradually more radicalized.  After a couple iterations, normal sensibilities will become scarce and extremism will find a forum.  It seems that the Tea Party movement siphoned support from working class white Democrats who had been suffering severely following the Great Recession and were at least justifiably angry, then Trumpism brought along the support of racially-motivated domestic extremists and anarchists (who were also angry, but not justifiably).
+
+There are numerous contributing factors to the decline of the Republican party, but this shift in "word-craft" has been the underlying telos, and repercussions can be witnessed with near ubiquity across different segments of the American electorate. 
+
+<center>
+
+```{r, RVs, fig.height = 4, fig.width = 6, dev = 'jpeg', echo=FALSE, message=FALSE, fig.cap = "Source: Pew Research Center"}
+
+
+pew_rvs <- pew_data_long %>% 
+  filter(Category == "All RVs")
+
+
+pew_rvs_g <- 
+  ggplot(pew_rvs, aes(x = Year, y = `%`, color = Party)) +
+  theme_hc() +
+  geom_point(position = "jitter", alpha = .3) +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) +
+  labs(title = "% of Registered Voters who identify as 'Republican/Democrat...'", 
+       caption = "Source: Pew Research Center") +
+  theme(legend.position='none') +
+  scale_color_manual(values = c("blue", "red")) +
+  geom_smooth(method = "glm", size = .4, se = TRUE, alpha = .25) +
+  scale_x_date(labels = date_format("%Y")) +
+  theme(plot.title = element_text(size=14, face = "italic", hjust = .5)) +
+  theme(axis.title.x = element_blank()) +
+  theme(axis.title.y = element_blank()) +
+  theme(text=element_text(family="segoe ui"))
+  
+
+ggplotly(pew_rvs_g) %>% 
+  config(displayModeBar = FALSE) 
+```
+</center>
+
+<br><br>
+
+<h3 class="heading"> Too few eggs and your cake won't rise </h3>
+
+
+
+Back in the Gingrich 90s, men were men, and Republicans were men.  In fact, it wasn't until around the Clinton impeachment that the percentage of registered voting males identifying as Republican fell below 50%.  A high mark of 52% in early 1994 has spent much of the subsequent years below the halfway divide.  
+
+The inception of the Tea Party in 2010 inspired some resurgence among the male electorate, one that was significantly strengthened during the Trump administration.  But this is likely ephemeral, a phantasm of increased support, because it is arguably mostly a result of Donald Trump's increased support among white supremacists which will likely fade to a degree without him.
+
+While Republican support from men appears to be in a resurgent period, women do not present a similar story.  On the contrary, women have been leaving the party far faster than men.  The overall attitude toward women is inclined to alienate them.  A 2017 CNN survey found that 83% of Democrats thought the United States would be governed better if more women were in political office, while only 2% thought it would be governed worse.  Starkly contrary, only 36% of Republicans thought government would be better, **but a _full 21%_ thought it would be worse**.^[Source: CNN/SSRS,  "http://cdn.cnn.com/cnn/2017/images/12/21/rel12d.-.sexual.harassment.pdf"]  It's been difficult to include more women in government in America, but it's nearly impossible when an entire fifth of your party believes it would actually make things worse.  And even if they don't think it would be worse, only about a third believe it would make anything better.^[To further elaborate on this point, in 2017, 37% of American women self-identified as Republicans; so the 36% of all Republicans that thought government would be better with more women in it, were quite possibly simply all the women]  As a consequence, the Republican party has far fewer women in the candidate pipeline than the Democratic party, which means it's a long grind to erode that view.
+
+Much in the way that party advocates have stepped up campaigns against legal same-sex marriage, they have sought to strengthen their efforts to defeat Roe v. Wade through attrition at a time when the support for legal abortion has grown to the highest it's been since 1995 (61%) and opposition is near its lowest (38%).^[Source: Pew Research Center, "https://www.pewforum.org/fact-sheet/public-opinion-on-abortion/"]  The perception of women, coupled with their stance on reproductive rights, has lit up the <span style="color: green;">**"EXIT"**</span> sign in the dim, dank room that is the current Republican party.
+
+<center>
+
+```{r gender, fig.height = 4, fig.width = 6, dev = 'jpeg', echo=FALSE, message=FALSE, warning=FALSE, fig.cap = "Source: Pew Research Center"}
+
+#Facet by gender
+pew_gender <- filter(pew_data_long, Category == "Men" | Category == "Women")
+  
+  
+pew_gender_g <-   
+  ggplot(pew_gender, aes(x = Year, y = `%`, color = Party)) +
+  theme_hc() +
+  geom_point(position = "jitter", alpha = .3) +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) +
+  labs(title = "% of Registered Voters who identify as 'Republican/Democrat...'",
+       caption = "Source: Pew Research Center") +
+  theme(legend.position='none') +
+  facet_wrap(~Category) +
+  scale_color_manual(values = c("blue", "red")) +
+  geom_smooth(method = "lm", size = .4, alpha = .25) +
+  scale_x_date() +
+  theme(plot.title = element_text(size=14, face = "italic", hjust = .5)) +
+  theme(axis.title.x = element_blank()) +
+  theme(axis.title.y = element_blank()) +
+  theme(text=element_text(family="segoe ui"))
+
+ggplotly(pew_gender_g) %>% 
+  config(displayModeBar = FALSE)
+
+```
+</center>
+
+The net loss of voter support between 1995 and 2018 is 2% among men and 5% among women.  Support among men has risen from its worst lows in the twilight of the Bush II years, but support among women hasn't recovered nearly as much.  Two percent (2%) may not seem like very much, but there were an estimated 158 million voters in the 2020 General Election.^[Source: United States Elections Project, "http://www.electproject.org/2020g"]  Just 2 percent is about 3 million voters, so even a single percentage point is enough to swing a close election.  The Republican party seems to have a problem with women, and millions of women have noticed and left for the Democratic camp.
+
+<center>
+```{r gender2, eval=FALSE, fig.cap=, width.out='100', length.out='100', fig.height=4, fig.width=6, message=FALSE, dev='jpeg', include=FALSE}
+
+
+#Men and women, 1994 - 2018
+pew_loss <- filter(pew_gender, Category == "Men" | Category == "Women")
+pew_loss_94 <- filter(pew_loss, Year == "1995-01-01" & Party == "Rep/Lean Rep" 
+                      | Year == "2018-01-01" & Party == "Rep/Lean Rep")
+
+pew_loss_94_g <- 
+ggplot(pew_loss_94, aes(Year, `%`, color = Category)) +
+  geom_path(size = 1) +
+  geom_point(size = 3) +
+  theme_hc() +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) +
+  labs(title = "% of Registered Voters who identify as Republican", 
+       caption = "Source: Pew Research Center") +
+  scale_color_manual(values = c("cyan4", "purple")) +
+  scale_x_date() +
+  scale_y_continuous(limits = c(35, 55)) +
+  theme(plot.title = element_text(size=14, face = "italic", hjust = .5)) +
+  theme(axis.title.x = element_blank()) +
+  theme(axis.title.y = element_blank()) +
+  theme(legend.title = element_blank()) +
+  theme(text=element_text(family="segoe ui"))
+
+ggplotly(pew_loss_94_g) %>% 
+  config(displayModeBar = FALSE)
+```
+</center>
+
+The gender skew that results from the Republican strategy is doubly self-defeating, as the problem isn't simply that women are defecting to the Democratic party, but perhaps more significantly, they have also become a greater proportion of the voting populace.  In fact, a higher proportion of voting age women have voted than men in every election since 1984, and the disparity is growing.^[Source: Kaiser Family Foundation, "https://www.kff.org"]  This makes the desertion of women even more pronounced; as the gender disparity widens, women are more likely vote for Democratic candidates.  The Republican party strategy, and this is a common theme, may have made sense at one point, but that point is at least 20 years in the past.
+
+<center>
+```{r gender3, echo=FALSE, width.out='100', length.out='100', fig.height=4, fig.width=6.5, message=FALSE, dev='jpeg'}
+
+year_gender <- read.csv("X:/OneDrive/02. Data/Partisan Lean Historical/Voter Gender 1964 - 2018.csv")
+year_gender <- pivot_longer(year_gender, cols = c("Male", "Female"), 
+                            names_to = "Gender", values_to = "Pct")
+
+year_gender_g <- 
+ggplot(year_gender, aes(Year, Pct, fill = Gender)) +
+  geom_bar(stat = "identity", position = "dodge", width = 1.5) +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) +
+  labs(title = "Percent of Voter Turnout by Gender", caption = "Source: Kaiser Family Foundation") +
+  theme_hc() +
+  scale_fill_manual(values = c("coral", "aquamarine2")) +
+  theme(plot.title = element_text(size=14, face = "italic", hjust = .5, 
+                                  vjust = 0)) +
+  theme(legend.position="bottom") +
+  theme(axis.title.x = element_blank()) +
+  theme(axis.title.y = element_blank()) +
+  theme(legend.title = element_blank()) +
+  theme(text=element_text(family="segoe ui"))
+
+ggplotly(year_gender_g) %>% 
+  config(displayModeBar = FALSE)
+
+```
+</center>
+
+<br><br>
+
+<h3 class="heading"> Oven on, off to the races </h3>
+
+
+
+The 2012 election after-action Republican post-mortem, aka "The Growth and Opportunity Project,"^[Source: "https://online.wsj.com/public/resources/documents/RNCreport03182013.pdf"] implored that the party "should work in conjunction with each state to develop statewide initiatives designed to expand and diversify the base of the state party."  It was not difficult to realize that the party would have no choice but to engage minorities in an alternate way that would allow it to expand its base, one that was becoming older and smaller in scope.  In fact, the report presented a focus on the Hispanic population, one that recognized the unappealing nature of the Republican rhetoric:
+
+>        
+"If Hispanic Americans hear that the GOP doesn’t want them in the United States, they won’t pay attention to our next sentence. It doesn’t matter what we say about education, jobs or the economy; if Hispanics think that we do not want them here, they will close their ears to our policies."
+>
+
+Despite this obvious need to increase their standing among the Hispanic electorate, the party instead took a hard line on immigration, a harder line than had ever been seen during either Bush administration.  The Republican establishment, at the time, was even somewhat open to some sort of amnesty and path to citizenship for those here illegally.  However, this was dashed by the Tea Party movement, and the establishment's House Majority Leader Eric Cantor lost his re-election effort to Tea Party candidate and political novice Dave Brat - *the first time a House Majority Leader had ever been defeated in a primary.*  While Hispanic support has somehow miraculously not completely evaporated, it hasn't often matched the high-water mark set during the Bush II years and remains near 29%.  To complicate the party's situation, Hispanic Americans have been increasingly identifying as Democrats while the Hispanic community in general has been growing as a proportion of America.
+
+And all that was before Donald Trump announced his presidential run in 2015.
+
+But the alienation of Hispanics doesn't exist in isolation, it borders on the edge of a motif for most minority groups.  Asian Americans have been running at break-neck speed to the Democratic party.  This is a demographic that has grown in population from about 14.7 million in 2010 to about 18.6 million by 2019.^[Source: American Community Survey, "https://www.census.gov/programs-surveys/acs/data.html"]  That's about 21% growth over the span of 2010 – 2019 among Asian Americans, far outpacing the overall US growth rate of 6% during the same span.  This indicates that the Asian American population will continue to grow as a percentage of the entire population for the foreseeable future.  Therefore, it is a bloc that could essentially swing almost any election to the Democrats, and the outright desertion of the party by Asian Americans is among the most drastic shifts in party loyalty among any ethnic group.  In 1992, candidate Bill Clinton garnered a mere 36% of the Asian American vote - but only twenty years later in 2012, Barack Obama managed to flip that Republican advantage entirely, and then some, by winning 73% in an absolute demographic rout.^[Source: Politico.com, "https://www.politico.com/magazine/story/2014/03/asian-americans-democrats-104763/"]  
+
+The Republicans have even managed to shave off a few points from the handful of the black community that actually supported them.  And the Democratic party's focus on the black electorate in Georgia in the 2020 election cycle demonstrates that increased black turnout can, without a doubt, turn some traditionally red states blue.  Here, the strategy can completely fall apart if the Democratic party were to exploit their advantage among minority groups, especially the black electorate.  It's not exactly possible to gerrymander everyone.  It's also difficult to increase your base among African Americans while increasingly fielding candidates that, while they may not publicly espouse racism and white supremacy, coyly condemn it at best.  The Republican party, over the last 25 years, at least appears as though it is striving to be only the ***white*** of the **red, white, and blue.**
+
+Support among *white* registered voters though, has *increased on average*.  Surprisingly, not as much as one might think - since the rise of the Tea Party, it has largely hovered around the 52% it was in 1995.  The inherent trouble with this strategy is, as highlighted by the Brookings Institute, 
+
+>
+"Between 2016 and 2019, the white population declined from 197,845,666 to 197,309,822, in yearly amounts of <span style="color: red;"> -97,507</span>, <span style="color: red;"> -212,957</span> and <span style="color: red;"> -225,380</span>. This three-year loss of over a half-million whites was enough to counter gains earlier in the decade, in total yielding a loss of white U.S. residents from 2010 to 2019." 
+>^[Source: "The nation is diversifying even faster than predicted",  https://www.brookings.edu/research/new-census-data-shows-the-nation-is-diversifying-even-faster-than-predicted/"]
+
+It is of particular note here, that the white population in America increased during the years of the Obama presidency between 2010 and 2019, but declined in each year of the Trump administration.  That's a bit shocking given the Trump campaign's effort to win white voters.
+
+So, ultimately, it turns out that the Republican Party strategy has managed to *increase* its base among the *single core demographic group* that is not growing as a percentage of the American population; in fact, it's now simply declining as a whole.
+
+<center>
+```{r race, width.out='100', length.out='100', fig.height = 7, fig.width = 7, dev = 'jpeg', echo=FALSE, message=FALSE, warning=FALSE, fig.cap = "Source: Pew Research Center"}
+
+#Facet by race
+pew_race <- filter(pew_data_long, Category == "Asian Americans" | Category == "Hispanic" |
+                     Category == "Black, Non-Hispanic" | Category == "White, Non-Hispanic")
+
+pew_race_g <-   
+  ggplot(pew_race, aes(x = Year, y = `%`, color = Party)) +
+  theme_hc() +
+  geom_point(position = "jitter", alpha = .3) +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) +
+  labs(title = "% of Registered Voters who identify as 'Republican/Democrat...'", 
+       caption = "Source: Pew Research Center") +
+  theme(legend.position='none') +
+  facet_wrap(~factor(Category, levels = c("Asian Americans",  
+                                          "Black, Non-Hispanic", "Hispanic", "White, Non-Hispanic")), ncol = 2) +
+  scale_color_manual(values = c("blue", "red")) +
+  geom_smooth(method = "lm", size = .4, alpha = .25) +
+  scale_x_date() +
+  theme(plot.title = element_text(size=14, face = "italic", hjust = .5, vjust = 0)) +
+  theme(axis.title.x = element_blank()) +
+  theme(axis.title.y = element_blank()) +
+  theme(text=element_text(family="segoe ui"))
+
+ggplotly(pew_race_g) %>% 
+  config(displayModeBar = FALSE)
+
+```
+</center>
+
+<br><br>
+
+<h3 class="heading"> Once they're out of the oven </h3>
+
+
+
+When Republicans don't support popular proposals such no-tuition community college, it may not be just because of the price tag.  Among all educational attainment levels, the percentage of registered voters who identify as Republican has decreased, except for among those with a high school diploma or less.  For as much as the right-wing rhetoric has accused the academia of liberal indoctrination, it was voters with a 4-year degree that predominantly identified as Republican, by far, only 25 years ago. Even as recently as 2010 just prior to the rise of the Tea Party, 49% of registered voters with 4-year degrees called themselves Republicans, as opposed to just 44% Democrats.  But that support drops off a cliff to its lowest point in 2018, plummeting to only 39% of degree holders.  So not that long ago, it was Republicans that dominated the academic landscape rather than Democrats.  If universities are now a haven of liberal thought, it's because the Republicans that made up the majority of the academic system decided to switch parties.
+
+The party exodus is most pronounced among those with graduate degrees, but exists in proportion to educational attainment.  The higher the education you achieve, the more likely you are to identify as a member of the Democratic party.  The correlation appears to be that the more educated you get, the more you see the Republican strategy for the failure that it is and leave the party.
+
+<center>
+```{r education, width.out='100', length.out='100', fig.height = 8, fig.width = 8, dev = 'jpeg', echo=FALSE, message=FALSE, warning=FALSE, fig.cap = "Source: Pew Research Center"}
+
+#Facet by education
+pew_education <- filter(pew_data_long, Category == "4-year College" | Category == "HS or Less" |
+                     Category == "Post-Graduate" | Category == "Some College")
+
+
+pew_education_g <- 
+ggplot(pew_education, aes(x = Year, y = `%`, color = Party)) +
+  theme_hc() +
+  geom_point(position = "jitter", alpha = .3) +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) +
+  labs(title = "% of Registered Voters who identify as 'Republican/Democrat...'", 
+       caption = "Source: Pew Research Center") +
+  theme(legend.position='none') +
+  facet_wrap(~factor(Category, levels = c("HS or Less", "Some College", 
+                                          "4-year College", "Post-Graduate")), ncol = 2) +
+  scale_color_manual(values = c("blue", "red")) +
+  geom_smooth(method = "lm", size = .4, alpha = .25) +
+  scale_x_date() +
+  theme(plot.title = element_text(size=14, face = "italic", hjust = .5, vjust = 0)) +
+  theme(axis.title.x = element_blank()) +
+  theme(axis.title.y = element_blank()) +
+  theme(text=element_text(family="segoe ui"))
+
+ggplotly(pew_education_g) %>% 
+  config(displayModeBar = FALSE)
+
+#Trend for combined college levels
+pew_education_higher <- filter(pew_data_long, Category == "4-year College" |
+                          Category == "Post-Graduate" | Category == "Some College")
+
+pew_education_higher_g <- 
+  ggplot(pew_education_higher) +
+  theme_hc() +
+  geom_point(aes(x = Year, y = `%`, color = Party, shape = Category),
+             position = "jitter", alpha = .3) +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) +
+  labs(title = "% of RVs with at least some college who identify as 'Republican/Democrat...'", 
+       caption = "Source: Pew Research Center") +
+  theme(legend.position='none') +
+  scale_color_manual(values = c("blue", "red")) +
+  geom_smooth(aes(x = Year, y = `%`, color = Party), method = "lm", size = .4, alpha = .25) +
+  scale_x_date() +
+  theme(plot.title = element_text(size=14, face = "italic", hjust = .5, vjust = 0)) +
+  theme(axis.title.x = element_blank()) +
+  theme(axis.title.y = element_blank()) +
+  theme(text=element_text(family="segoe ui"))
+
+ggplotly(pew_education_higher_g) %>% 
+  config(displayModeBar = FALSE)
+
+```
+</center>
+
+
+
+<center>
+```{r education higher, eval=FALSE, fig.cap=, width.out='100', length.out='100', fig.height=6, fig.width=8, message=FALSE, warning=FALSE, dev='jpeg', include=FALSE}
+#Trend for combined college levels
+pew_education_higher <- filter(pew_data_long, Category == "4-year College" |
+                          Category == "Post-Graduate" | Category == "Some College")
+
+pew_education_higher_g <- 
+  ggplot(pew_education_higher, aes(x = Year, y = `%`, color = Party)) +
+  theme_hc() +
+  geom_point(position = "jitter", alpha = .3) +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) +
+  labs(title = "% of RVs with at least some college who identify as 'Republican/Democrat...'", 
+       caption = "Source: Pew Research Center") +
+  theme(legend.position='none') +
+  scale_color_manual(values = c("blue", "red")) +
+  geom_smooth(method = "lm", size = .4, alpha = .25) +
+  scale_x_date() +
+  theme(plot.title = element_text(size=14, face = "italic", hjust = .5, vjust = 0)) +
+  theme(axis.title.x = element_blank()) +
+  theme(axis.title.y = element_blank()) +
+  theme(text=element_text(family="segoe ui"))
+
+ggplotly(pew_education_higher_g) %>% 
+  config(displayModeBar = FALSE)
+```
+</center>
+
+Again, this is undoubtedly a FAILING strategy in the long term.  The percentage of the US population with at least a bachelor's degree increased from 22% in 1994 to 36% twenty-five years later.  In terms of actual population, it's essentially doubled:  
+
+- 263.4 million (1994 population) x 22% = **58 million** 
+- 328.2 million (2019 population) x 36% = **118.5 million**
+
+This education-related shift might be the most profound demographic shift over the last quarter century that we can glean from the Pew Research data and provides insight into the party's position on public education, especially at the university level. ^[Source: National Center for Education Statistics, "https://nces.ed.gov/programs/digest/d19/tables/dt19_104.10.asp"]  In fact, there has been an oddly precipitous decline in the perception of colleges and universities among Republicans since just 2015.  Fifty-four percent (54%) of Republicans said the academia had a positive effect on how the country is going in 2015, but that fell to just 33% in 2019.^[Source: Pew Research Center, "https://www.pewresearch.org/fact-tank/2019/07/29/americans-have-become-much-less-positive-about-tech-companies-impact-on-the-u-s/"]  What was once a gentle animosity in reaction to a perceived elitism, has now escalated to a scorched earth campaign on not just the academics, but the entirety of the body scientific.  A similar assault was launched against another highly scientific arena as well, the intelligence community. This pattern clearly alienates those with degrees, and it's really confounding to understand its motivation when the proportion of the electorate with a degree is increasing.  
+
+What's perhaps more puzzling is that trying to increase an electoral base among those with only a high school diploma is clearly a losing proposition to begin with.  Around the year 2000, the overall percentage of Americans with a high school diploma or less dropped **below 50%**, and has been dropping ever since, now sitting around 44%.  The numbers game is again not in favor of what this strategy is reaping - 6 percentage points in 2020 equates to about **9.5 million** voters.  Perhaps it made a modicum of sense in 1995, but it became effectively outmoded by the next election cycle.
+
+<center>
+```{r education2, width.out='100', length.out='100', fig.height = 4, fig.width = 6, dev = 'jpeg', echo=FALSE, message=FALSE, warning=FALSE, fig.cap = "Source: NCES"}
+
+#Read in education level by year from 1995 :
+#- "https://nces.ed.gov/programs/digest/d19/tables/dt19_104.20.asp?current=yes"
+
+higher_ed <-read.csv("X:/OneDrive/02. Data/Partisan Lean Historical/Education Level 1995 - 2019.csv")
+#Isolate ed levels
+higher_ed1 <- higher_ed[c(1:3, 8, 13, 17) ,c(1, 3, 5, 7:8)] #filter for every 5 years
+higher_ed1$Year[6] <- 2020  #last year is 2019 -- change to 2020 to normalize graph output
+#Pivot long
+ed_att <- pivot_longer(higher_ed1, !Year, names_to = "Level", values_to = "Pct")
+
+#Plot bar graph
+ed_att_g <- 
+ggplot(ed_att, aes(Year, Pct, fill = factor(Level, levels = rev(c("HS", "Associates", 
+                                                                  "Bachelors", "Masters"))))) +
+  geom_bar(position = "stack", stat = "identity", width = 2) +
+  labs(title = "An Increasing Percentage of Americans Hold Higher Degrees") +
+  theme_hc() +
+  theme(legend.title = element_blank()) +
+  theme(plot.title = element_text(size=14, face = "italic", hjust = .5, vjust = 0)) +
+  theme(text=element_text(family="segoe ui")) +
+  theme(axis.title.x = element_blank()) +
+  theme(axis.title.y = element_blank()) +
+  scale_fill_brewer(palette = "Set3")
+
+ggplotly(ed_att_g, tooltip = FALSE)%>% 
+  config(displayModeBar = FALSE)
+```
+</center>
+
+<br><br>
+
+<h3 class="heading"> Is this cake baked yet? </h3>
+
+
+<p>
+The insight from this is clear - and it is the same lesson that should have been learned by **losing the popular vote in 7 of the last 8** Presidential elections, and by **losing the House, the Senate, and the White House** in a single term for the first time since the Hoover administration. That lesson is simply that **this gratuitously antagonistic strategy is NOT WORKING**, and doubling-down is starting to look like a serious flirtation with American fascism.  It may sometimes appear that it's working when small, gerrymandered pockets show strong in-person, grassroots support, or when there is record Republican turnout in a presidential election; but it is failing on the aggregate as **an increasing percentage of Americans stop calling themselves Republicans.**  So it's time to turn this bus around, Republican Party.
+
+Even when the party wins, it loses.  For example, during the Trump administration (2017 - 2020), Republican voter registration in Pennsylvania outpaced Democratic registration by about 69,000 voters.  This should be a point of pride, a quantifiable sign that the strategy is working.  However, there are 4,077,661 registered Democrats in Pennsylvania, and only 3,463,499 registered Republicans.^[Source: Pennsylvania Department of State, "https://www.dos.pa.gov/VotingElections/OtherServicesEvents/VotingElectionStatistics/Pages/VotingElectionStatistics.aspx"]
+Erasing that disparity, at that pace, would take a mere three and a half decades.  And the clear dwindling demographic of the Republican base does little to instill confidence that such a pace could even be maintained.
+    
+Sadly, I'm not sure we can step back from the edge; the strategy that has persisted and been redoubled for a quarter century has now created a radicalized electorate that is, in all fairness, out of control. The very party representatives that pushed this public relations agenda are now afraid of their own constituents who have elevated their fanaticism to destructive, violent, and  even homicidal ends.  They cannot reverse course to tone down their rhetoric without facing vitriol and death threats; nor can they dial down their intensity without being berated and labeled as "weak."  
+
+There has developed a significant and radical cohort within the Republican party, one that has found more than just a safe haven in recent years, they were actually invited in by the President of the United States.  And despite increasingly alarming behavior and rhetoric, are still only half-heartedly shunned at best.  But this is not a new problem, it's been increasing as a result of the Gingrichian agenda and it shows in the types of politically motivated violence.
+
+>
+In 14 of the 21 years between 1994 and 2019 in which fatal terrorist attacks occurred, the majority of deaths resulted from right-wing attacks. In eight of these years, right-wing attackers caused all of the fatalities, and in three more—including 2018 and 2019—they were responsible for more than 90 percent of annual fatalities. Therefore, while religious terrorists caused the largest number of total fatalities, right-wing attackers were most likely to cause more deaths in a given year.^[Source: Center for Strategic & International Studies,
+"https://csis-website-prod.s3.amazonaws.com/s3fs-public/publication/200612_Jones_DomesticTerrorism_v6.pdf"]
+>
+
+This has been heading down a dark road and, unfortunately, the Republican party's heated rhetoric and embrace of extremism is delegitimizing the achievements of American democracy on a global scale.  I don't know the way out of this situation for the Republican Party - it may be too late to move forward without a fundamental deconstruction of the party that splinters off into one or more factions, let's just hope it doesn't take the rest of the country down with it.
+
+I do know, however, that if the Republicans want to continue descending into more and more desperate voter suppression tactics, wild conspiracy theories to explain away what will be their mounting losses, and far-right, authoritarian tendencies, then they should double-down on this flawed strategy once again. And the stage is certainly set to do so, as more than half of Republicans actually believe that there was some kind of massive, coordinated voter fraud in the 2020 election.^[Source: The Washington Post, "https://www.washingtonpost.com/politics/2021/01/19/which-republicans-think-election-was-stolen-those-who-hate-democrats-dont-mind-white-nationalists/"]  Republican representatives are understandably reluctant to help dispel the narrative that was continually perpetuated by then-President Trump, they may need to make use of it themselves sooner rather than later given the confluence of an eroding base pool and an accelerating party flight.  Because at some point, gerrymandering is no longer going to be enough to overcome the shrinking Republican electorate.  Even the electoral college will no longer provide a margin large enough to maintain power, as we see states like Texas, Arizona, and even Georgia trend away from the party.  The political intensity is a mirage, it makes it seem as though this road is making gains, but that is just not the case.  The 2020 election may be just a preview, because there are going to have to be increasingly incredulous fantasies to justify their losses when, in reality, it's simply 1) a departure from the Republican party and 2) an arrival at the Democratic party, for what should be fairly obvious reasons after a quarter century. 
+
+The Gingrichian brainchild strategy of the mid-90s may have helped win the Republicans power in Congress in 1994, but it has been driving away voters ever since.  And while Gingrich was the seminal architect of the contrasting words tactic, he was largely irrelevant by the end of the century.  It was the inheritors of the strategy that brought us to today, and it was often difficult to tell who was actually driving the party platform - the politicians, or the sensationalized, outraged conservative media that exploded in popularity during the 90s that fed the fledgling beast of combative bombast that matured to become the party *lingua franca* for a generation.
+
+<br><br>
+
+<h3 class="heading"> So how does it taste? </h3>
+
+
+
+Earlier I said that the "contrasting words" that became the Great Lexical Shift of the Republican party had not been that common prior to 1995.  But that's not exactly true.  They were actually quite common.  Words such as corruption, destroy, radical, ideological, endanger, and impose were fairly bandied about indeed.  But Americans were using them to describe Soviet totalitarianism during the Cold War.  As Gingrich noted, "creating a difference helps you;" and it certainly did help us in the decades-long struggle to defeat the tyrannical juggernaut that was Soviet communism.  We would triumph in the Cold War because America was exceptional and the Soviets were corrupt.  We would win the Space Race because of American ingenuity, while the Soviet Union stagnated.  The United States would be the exemplar for the world because of our compassion and love of freedom, while Soviet communism was oppressive and destructive.  And we did triumph, because we focused our energy against a common threat to our American way of life.
+
+But after the Fall of the Berlin Wall, in a world devoid of an enigmatic, powerful, and deadly  Soviet hegemony to unite America against, the Republican party appropriated that Cold War language and weaponized it against the Democratic party and, more egregiously, against American society as a whole.  Opposition to mere policies somehow became *sick*, *disgraceful*, *coercive*, *betrayals*, and *collapse*.  Push for reform against racial injustice became *self-serving* and *abuses of power*.  Proposals for higher taxes on the wealthy to help compensate for inherent economic inequality became *welfare*, *radical*, and *red tape*.  The effort to press the Reaganite doctrine that government is bad was amplified, and it turned from skepticism to outright animosity.  It became a Cold War of Rhetoric in and of itself, modeled after our own anti-Soviet propaganda.  And by the arrival of Trumpism, this **word war was no longer cold.**  Predictably, this elicited a series of reactions along the way, some certainly wholly unhelpful. 
+
+Our discourse has become an allegory of uniquely American lore - we are the *political Hatfields and McCoys.*  It often looks like we're fighting for the sake of fighting, over some vendetta from a bygone generation.  Without the threat of a superpower rival, we've become increasingly bellicose toward each other, and that has eroded our cultural will to compromise for the good of the country, and arguably the world, as a whole.  Because when America does *well*, it raises the global tide.  And when America does *right*, it raises the global bar of morality and human liberty.  The Republican party's strategy has led to neither, and has most recently perpetrated some rather horrific record lows and an inexorably damaged perception around the globe.
+
+We've been divided before.  We got through it.  But this will be a long, rough road if we don't stop clutching so recklessly to party, or recently personal, loyalty.  Because that's precisely what the strategy born out of the Republican Revolution strove to do - to push party loyalty above common good in an effort to maintain power or, at the very least, never let it get 40 years away again.
+
+I suppose the silver lining is this - the Hatfields and McCoys held a joint family reunion in 2000...
+
+<br><br><br><br>
+<center>
+ <footer>
+  <p>©2021 | <stong><em>Andres R Domingo</em></strong> | <a href="mailto:andres.domingo@outlook.com">andres.domingo@outlook.com</a></p>
+</footer> 
+</center>
