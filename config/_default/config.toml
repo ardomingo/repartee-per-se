@@ -18,7 +18,11 @@ disqusShortname = ""
 # config/_default/menus/menu.xx.toml
 
 # Enable analytics by entering your Google Analytics tracking ID
+<<<<<<< HEAD
 GoogleAnalytics = "G-9LMWHZE4LB"
+=======
+GoogleAnalytics = "G-9LMWHZE4LB""
+>>>>>>> d9eb3b9dbe824f0fcd4faf6bfaeb296423cdf622
 
 
 [taxonomies]
