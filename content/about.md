@@ -14,6 +14,7 @@ title: About
 
 This blog is a collection of articles in the data journalism style across a range of topics, from baseball to politics to humor.  Most of these pieces include some aspect of data analysis to help illustrate how these methods can relate to real, everyday questions we might come across in our lives.
 
+In addition to each post have a certain category, they will also have a more specific tag.  Some of these may not make sense unless you are familiar with the R programming language - as I use R for much of my data analysis, I have tagged some posts with the particular packages (such as `ggplot2` , `kableExtra`, or  `rvest`) utilized in the visualizations.
 
 PRIMARY CONTRIBUTOR
 

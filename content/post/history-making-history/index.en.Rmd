@@ -4,7 +4,7 @@ author: AR Domingo
 date: '2021-03-23'
 slug: [history-making-history]
 categories:
-  - MLB
+  - Sports
 tags:
   - Baseball
 ---

@@ -4,7 +4,7 @@ author: AR Domingo
 date: '2020-10-14'
 slug: a-game-of-arc-seconds
 categories:
-  - MLB
+  - Sports
 tags:
   - Baseball
 ---

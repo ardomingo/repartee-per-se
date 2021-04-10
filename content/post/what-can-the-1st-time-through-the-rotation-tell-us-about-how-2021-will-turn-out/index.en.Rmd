@@ -4,7 +4,8 @@ title: What can the first time through the rotation tell us about how 2021 will 
 author: AR Domingo
 date: '2021-04-08'
 slug: [first-time-through-the-rotation-2021]
-categories: [MLB, R]
+categories: 
+  - Sports
 tags:
   - Baseball
   - kableExtra

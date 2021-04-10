@@ -6,7 +6,7 @@ slug: [the-q-anon-phenomenon]
 categories:
   - Politics
 tags:
-  - QAnon
+  - Q-Anon
 ---
 
 
