@@ -17,7 +17,7 @@ This blog is a collection of articles in the data journalism style across a rang
 
 PRIMARY CONTRIBUTOR
 
-AR Domingo
+A.R. Domingo
 
 <img src="/./about_files/ARDomingo1.jpg" alt="" width="25%" height="25%"/>
 
