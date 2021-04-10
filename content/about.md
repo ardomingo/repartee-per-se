@@ -3,7 +3,7 @@ aliases:
 - about-us
 - about-hugo
 - contact
-author: AR Domingo
+author: A.R. Domingo
 date: "2020-01-01"
 description: Repartee, per se
 title: About
