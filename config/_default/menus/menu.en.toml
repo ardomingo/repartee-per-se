@@ -24,20 +24,20 @@ name = "Featured"
   identifier = "Social Links"
   weight = -108
 [[main]]
-  parent = "Links"
+  parent = "Social Links"
   name = "GitHub"
   url = "https://github.com/ardomingo/"
 [[main]]
-  parent = "Links"
+  parent = "Social Links"
   name = "LinkedIn"
   url = "https://www.linkedin.com/in/andres-domingo-75682343/"
 [[main]]
-  parent = "Links"
+  parent = "Social Links"
   name = "Twitter"
   url = "https://twitter.com/andresrdomingo/"
   
 [[main]]
-  parent = "Links"
+  parent = "Social Links"
   name = "Facebook"
   url = "https://www.facebook.com/andy.domingo/"  
 
