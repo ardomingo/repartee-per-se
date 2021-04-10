@@ -20,8 +20,8 @@ name = "Featured"
 
 # Submenus are done this way: parent -> identifier
 [[main]]
-  name = "Links"
-  identifier = "Links"
+  name = "Social Links"
+  identifier = "Social Links"
   weight = -108
 [[main]]
   parent = "Links"
