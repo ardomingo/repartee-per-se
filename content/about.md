@@ -19,6 +19,7 @@ PRIMARY CONTRIBUTOR
 
 AR Domingo
 
+<img src="/./about_files/ARDomingo1.jpg" alt="" width="25%" height="25%"/>
 
 Mr. Domingo pursued an English Degree during his time at the University of California, Riverside, almost purely out of a passion for the subject and an interest in the analytic nature of literary criticism.  This led down a path based more broadly in analysis, beginning in revenue management in hospitality more than ten years ago.  Now, utilizing a variety of data science tools, provides in-depth consultation and analytics platforms across a wide range of disciplines. 
 
