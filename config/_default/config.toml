@@ -21,6 +21,7 @@ disqusShortname = ""
 googleAnalytics = "G-9LMWHZE4LB"
 
 
+
 [taxonomies]
 category = "categories"
 tag = "tags"
