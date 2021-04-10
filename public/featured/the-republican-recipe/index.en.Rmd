@@ -24,7 +24,10 @@ tags:
 </center>
 
 ```{r setup, include=FALSE}
+
+knitr::opts_chunk$set(echo = TRUE, fig.path = "static")
 knitr::opts_chunk$set(echo = FALSE)
+
 
 #setwd(file.path("C:", "Users", "andre", "OneDrive", "02. Data", "Partisan Lean Historical"))
 
