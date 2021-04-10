@@ -4,7 +4,7 @@ author: AR Domingo
 date: '2020-08-04'
 slug: [respite-from-a-chaotic-world]
 categories:
-  - MLB
+  - Sports
 tags:
   - Baseball
 ---
