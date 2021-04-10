@@ -12,14 +12,12 @@ tags:
   - ggplot2
 ---
 
-
 <html>
     <link rel="stylesheet" href="recipe.css" />
 </html>
 
 <center>
 # How the party strategy has been failing for 25 years
-</center><br>
 
 <center>
 #### ***by A.R. Domingo***
