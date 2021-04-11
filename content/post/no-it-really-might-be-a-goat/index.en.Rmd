@@ -8,14 +8,16 @@ categories:
 tags:
   - Football
   - NFL
+  - formattable
 ---
 
 <center>
-#### Does it Quack?
+## Does it Quack?
 </center>
 
 
 ```{r setup, message=FALSE, warning=FALSE, include=FALSE, cache=TRUE}
+
 
 library(tidyverse)
 library(DT)
@@ -87,8 +89,7 @@ passing_combined_15to19 <- rbind(passing_2015, passing_2016, passing_2017, passi
 passing_combined_15to19 <- passing_combined_15to19[ , c(1, 4:5, 7, 9, 11, 17)]
 
 
-#Create table with {DT} pkg
-avgs_table_set <- rbind(league1, brady_early, brady_late)
+
 
 
 #Import Brady Career Stats
@@ -153,7 +154,11 @@ brady_late_insert$Player <- "T. BRADY"
 brady2020 <- filter(passing_2020, grepl("Brady", Player, fixed = TRUE))
 brady2020 <- brady2020[ , c(1, 4:5, 7, 9, 11, 17)]
 
+#Create table with {DT} pkg
+avgs_table_set <- rbind(league1, brady_early, brady_late)
 
+avgs_table_set <- avgs_table_set[, c(7, 6, 1:5)]
+avgs_table_set <- avgs_table_set[order(avgs_table_set$Party, desc(avgs_table_set$Year)), ]
 
 #Add Brady 2020 stats for emphasis
 percentiles <- rbind(passing_combined_15to19, brady_late_insert, brady2020)
@@ -173,58 +178,110 @@ percentiles %>%
 percentiles <- percentiles[, c(1, 7, 2:3, 13, 4:6, 8:9, 14, 10:12)]
 
 
+#######  BRADY vs The Players data
+
+league_chart_PCTs <- percentiles[,c(1:2, 9:14)]
+#league_chart_trim1 <- league_chart_trim[ , c(1, 3:8)]
+
+ 
+league_chart_PCTs %>% 
+group_by(Player, Year) %>% 
+  summarise(Year, AttPCT, CmpPCT, CmplPCT, YdsPCT, TDPCT, IntPCT) 
+  
+
+brady_PCTs <- filter(league_chart_PCTs, grepl("Brady|BRADY", Player))
+brady_PCTs <- brady_PCTs[order(brady_PCTs$Player, desc(brady_PCTs$Year)), ]
 
 
 
 ```
 
 
-On thee day of Super Bowl LV before the game got under way, I noted [this](https://repartee-per-se.netlify.app/post/if-it-walks-like-a-goat/) about Tom Brady.  
+
+On the day of Super Bowl LV before the game got under way, I noted [this](https://repartee-per-se.netlify.app/post/if-it-walks-like-a-goat/) about Tom Brady.  This was, admittedly, based on not much more than a gut feeling I got about his performance over his career, as well as my perceptions of him throughout his time in the NFL.  But I needed to know - how good has Brady been during that five years when he could have been "retired" and waiting to get voted into the HOF?  What did he do with himself instead of putting on the production of the triumphant Hall of Famer returning to play for one more ring?  What did he do actually playing those five years?
 
 
+<center>
+### Brady v. The League
+</center>
+
+If you look at the more vital passing statistics including attempts (Att), completions (Cmp), passing yards (Yds), touchdowns (TD), and interceptions (Int), it becomes pretty clear how Brady has spent his time.  His averages for the five seasons between 2015-2019 outpaced what the entire NFL averaged in each of those seasons in 4 out of 5 of those categories.  Brady's averages over that span, against the league:
 
 
-```{r brady v league}
+- Rank **3rd** in Attempts
+- Rank **1st** in Completions
+- Rank **1st** in Yards
+- Rank **1st** in Touchdowns
+- Rank **1st** in Interceptions
+
+<br>
 
 
+<center>
+```{r brady v league, echo=FALSE, message=FALSE, warning=FALSE, fig.width=100}
 
-datatable(avgs_table_set,           
-      rownames = FALSE,
-      caption = htmltools::tags$caption(style = 
-            'caption-side: top; text-align: center; color:black; font-size:200% ;','Brady vs. The League'),
-      options = list(
-            order = list(list(2, 'dsc')),
-            columnDefs = list(list(className = 'dt-center', targets = 0:6)))) %>% 
-            formatRound(columns=c(1:5), digits=2)
+options(digits = 5)  
+
+library(tidyverse)
+library(DT)
+library(formattable)
+
+  
+row.names(avgs_table_set) <- NULL
+
+formattable(avgs_table_set,
+            list(
+              Att = color_tile("transparent", "pink"),
+              Cmp = color_tile("transparent", "lightgray"),
+              Yds = color_tile("transparent", "lightblue"),
+              TD = color_tile("transparent", "pink"),
+              Int = color_tile("lightgray", "transparent"))) 
+
+# datatable(avgs_table_set,           
+#       rownames = FALSE,
+#       options = list(
+#             dom = 't',
+#             order = list(list(2, 'dsc')),
+#             columnDefs = list(list(className = 'dt-center', targets = 0:6)),
+#       initComplete = JS("
+#                          function(settings, json) {
+#                          $(this.api().table().header()).css({
+#                          'background-color': 'silver',
+#                          'color': 'blue'
+#                          });
+#                          }"))) %>%
+#             formatRound(columns=c(1:5), digits=2)
 
 
 ```
+</center>
+
+<center>
+#### Brady v. The Players
+</center>
+
+So good old #12's performance over those years was essentially a clinic for the league, on average.  But how does he stack up against individual players?  By looking at how his stats rank, as a percentile, against all other QBs gives a pretty good idea that he was generally at least above average.^[By taking every QB in the NFL with at least 14 pass attempts per game and compiling their seasons stats, I then ranked them by percentile, with numbers closest to 100 being the league leaders in that stat category.  So this table provides how each of Brady's seasons (2015-2019; and 2020 added for context) **and** his average performance, each compare, in terms of his percentile rankings, against the seasons of every other QB's season totals during **every** season (excluding 2020).]  Indeed, most of his stats put his in at least the 60th percentile.  So while not always in a spot to win, place, or show, you would have been wise to grab him for your fantasy league. <br><br>
 
 
+```{r brady v players, echo=FALSE, message=FALSE, warning=FALSE, fig.width=100}
 
-```{r brady v players, echo=FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(formattable)
+library(DT)
 
+row.names(brady_PCTs) <- NULL
 
-#Build Table  
-datatable(percentiles,
-      rownames = FALSE,
-      caption = htmltools::tags$caption(style = 
-                    'caption-side: top; text-align: center; color:black; font-size:200% ;','Brady vs. The Players'),
-      options = list(pageLength = 15,
-      order = list(list(2, 'dsc')),
-      columnDefs = list(list(className = 'dt-center', targets = 2:6)))) %>% 
-  formatStyle(
-      'Player',
-      target = 'row',
-      backgroundColor = styleEqual("T. BRADY", 'aqua')) %>% 
-  formatStyle(
-      'Year',
-      target = 'row',
-      backgroundColor = styleEqual("2020", 'skyblue')) %>% 
-  formatPercentage(columns = 5)
-
-
+formattable(brady_PCTs,
+  list(
+  AttPCT = color_bar("pink"),
+  CmpPCT = color_bar("silver"),
+  CmplPCT = color_bar("lightblue"),
+  YdsPCT = color_bar("pink"),
+  TDPCT = color_bar("silver"),
+  IntPCT = color_bar("lightblue")))
 
 ```
 
+He also won a couple of Super Bowls in that span for good measure...and then with another career year this past season, with a different team, in a different conference, he won another.
 
+<br><br>
