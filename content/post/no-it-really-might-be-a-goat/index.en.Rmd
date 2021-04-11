@@ -2,7 +2,7 @@
 title: No, it really might be a GOAT
 author: AR Domingo
 date: '2021-04-10'
-slug: no-it-really-might-be-a-goat
+slug: it-really-might-be-a-goat
 categories:
   - Sports
 tags:
