@@ -1,0 +1,230 @@
+---
+title: No, it really might be a GOAT
+author: AR Domingo
+date: '2021-04-10'
+slug: no-it-really-might-be-a-goat
+categories:
+  - Sports
+tags:
+  - Football
+  - NFL
+---
+
+<center>
+#### Does it Quack?
+</center>
+
+
+```{r setup, message=FALSE, warning=FALSE, include=FALSE, cache=TRUE}
+
+library(tidyverse)
+library(DT)
+
+
+#Import data
+
+#Get yearly team passing stats
+teampass_2015 <- read.csv("X:/OneDrive/02. Data/NFL Data/NFl DataTeamPassing2015.csv") %>% 
+  summarize_if(is.numeric, mean)
+teampass_2015$Season <- 2015
+
+
+teampass_2016 <- read.csv("X:/OneDrive/02. Data/NFL Data/NFl DataTeamPassing2016.csv") %>% 
+  summarize_if(is.numeric, mean)
+teampass_2016$Season <- 2016
+
+
+teampass_2017 <- read.csv("X:/OneDrive/02. Data/NFL Data/NFl DataTeamPassing2017.csv") %>% 
+  summarize_if(is.numeric, mean)
+teampass_2017$Season <- 2017
+
+
+teampass_2018 <- read.csv("X:/OneDrive/02. Data/NFL Data/NFl DataTeamPassing2018.csv") %>% 
+  summarize_if(is.numeric, mean)
+teampass_2018$Season <- 2018
+
+
+teampass_2019 <- read.csv("X:/OneDrive/02. Data/NFL Data/NFl DataTeamPassing2019.csv") %>% 
+  summarize_if(is.numeric, mean)
+teampass_2019$Season <- 2019
+
+teampass_2020 <- read.csv("X:/OneDrive/02. Data/NFL Data/NFl DataTeamPassing2020.csv") %>% 
+  summarize_if(is.numeric, mean)
+teampass_2020$Season <- 2020
+
+
+#Combine 15-19 into table
+league_avgs <- rbind(teampass_2015, teampass_2016, teampass_2017, teampass_2018, teampass_2019)
+
+#Prep df's to match to bind
+league1 <- league_avgs[ , c(1:2, 5:7)] %>% 
+    rename(Yds = Pass.Yds,
+           Int = INT)
+
+
+
+#Player stats
+passing_2015 <- read.csv("X:/OneDrive/02. Data/NFL Data/NFl DataPassing2015.csv")
+passing_2015$Year <- 2015
+
+passing_2016 <- read.csv("X:/OneDrive/02. Data/NFL Data/NFl DataPassing2016.csv")
+passing_2016$Year <- 2016
+
+passing_2017 <- read.csv("X:/OneDrive/02. Data/NFL Data/NFl DataPassing2017.csv")
+passing_2017$Year <- 2017
+
+passing_2018 <- read.csv("X:/OneDrive/02. Data/NFL Data/NFl DataPassing2018.csv")
+passing_2018$Year <- 2018
+
+passing_2019 <- read.csv("X:/OneDrive/02. Data/NFL Data/NFl DataPassing2019.csv")
+passing_2019$Year <- 2019
+
+passing_2020 <- read.csv("X:/OneDrive/02. Data/NFL Data/NFl DataPassing2020.csv")
+passing_2020$Year <- 2020
+
+#Combine sets and reorder
+passing_combined_15to19 <- rbind(passing_2015, passing_2016, passing_2017, passing_2018, passing_2019)
+passing_combined_15to19 <- passing_combined_15to19[ , c(1, 4:5, 7, 9, 11, 17)]
+
+
+#Create table with {DT} pkg
+avgs_table_set <- rbind(league1, brady_early, brady_late)
+
+
+#Import Brady Career Stats
+tom_brady <- read.csv("X:/OneDrive/02. Data/NFL Data/TomBradyCareer.csv")
+tom_brady <- tom_brady[1:20, c(1:6, 8, 10, 12, 14)]
+
+tom_brady_to14 <- tom_brady %>% 
+  filter(Year < 2015)
+
+tom_brady_15on <- tom_brady %>% 
+  filter(Year >= 2015)
+
+#Get Totals for each era
+brady_0014 <- 
+  tom_brady_to14 %>% summarise_if(is.numeric, sum)
+
+brady_1519 <- 
+  tom_brady_15on %>% summarise_if(is.numeric, sum)
+
+career_splits <- 
+  rbind(brady_0014, brady_1519)
+
+
+#Get Averages for each era
+brady_0014_avg <- 
+  tom_brady_to14 %>% summarise_if(is.numeric, mean)
+
+brady_1519_avg <- 
+  tom_brady_15on %>% summarise_if(is.numeric, mean)
+
+career_splits_avg <- 
+  rbind(brady_0014_avg, brady_1519_avg)
+
+rownames(career_splits_avg) <- c("Early", "Late")
+
+
+
+brady_early <- brady_0014_avg[ , 3:7]
+brady_early$Years <- "2000-2014"
+brady_early$Party <- "BRADY Avg."
+
+brady_late <- brady_1519_avg[ , 3:7]
+brady_late$Years <- "2015-2019"
+brady_late$Party <- "BRADY Avg."
+
+
+#Prep df's to match to bind
+league1 <- league_avgs[ , c(1:2, 5:7)] %>% 
+    rename(Yds = Pass.Yds,
+           Int = INT)
+
+league1$Years <- c(2015:2019)
+league1$Party <- "League Avg."
+
+
+
+brady_late_insert <- brady_late[, 1:6] %>% 
+  rename(Year = Years)
+brady_late_insert$Player <- "T. BRADY"
+
+
+brady2020 <- filter(passing_2020, grepl("Brady", Player, fixed = TRUE))
+brady2020 <- brady2020[ , c(1, 4:5, 7, 9, 11, 17)]
+
+
+
+#Add Brady 2020 stats for emphasis
+percentiles <- rbind(passing_combined_15to19, brady_late_insert, brady2020)
+
+percentiles <- 
+percentiles %>% 
+  mutate(AttPCT = ntile(Att, 100),
+         CmpPCT = ntile(Cmp, 100),
+         YdsPCT = ntile(Yds, 100),
+         TDPCT = ntile(TD, 100),
+         IntPCT = 100-ntile(Int, 100),
+         Cmpl = Cmp / Att,
+         CmplPCT = ntile(Cmpl, 100)
+         )
+
+#Reorder
+percentiles <- percentiles[, c(1, 7, 2:3, 13, 4:6, 8:9, 14, 10:12)]
+
+
+
+
+
+```
+
+
+On thee day of Super Bowl LV before the game got under way, I noted [this](https://repartee-per-se.netlify.app/post/if-it-walks-like-a-goat/) about Tom Brady.  
+
+
+
+
+```{r brady v league}
+
+
+
+datatable(avgs_table_set,           
+      rownames = FALSE,
+      caption = htmltools::tags$caption(style = 
+            'caption-side: top; text-align: center; color:black; font-size:200% ;','Brady vs. The League'),
+      options = list(
+            order = list(list(2, 'dsc')),
+            columnDefs = list(list(className = 'dt-center', targets = 0:6)))) %>% 
+            formatRound(columns=c(1:5), digits=2)
+
+
+```
+
+
+
+```{r brady v players, echo=FALSE, message=FALSE, warning=FALSE}
+
+
+#Build Table  
+datatable(percentiles,
+      rownames = FALSE,
+      caption = htmltools::tags$caption(style = 
+                    'caption-side: top; text-align: center; color:black; font-size:200% ;','Brady vs. The Players'),
+      options = list(pageLength = 15,
+      order = list(list(2, 'dsc')),
+      columnDefs = list(list(className = 'dt-center', targets = 2:6)))) %>% 
+  formatStyle(
+      'Player',
+      target = 'row',
+      backgroundColor = styleEqual("T. BRADY", 'aqua')) %>% 
+  formatStyle(
+      'Year',
+      target = 'row',
+      backgroundColor = styleEqual("2020", 'skyblue')) %>% 
+  formatPercentage(columns = 5)
+
+
+
+```
+
+
