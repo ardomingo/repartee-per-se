@@ -232,10 +232,10 @@ row.names(avgs_table_set) <- NULL
 formattable(avgs_table_set,
             list(
               Att = color_tile("transparent", "pink"),
-              Cmp = color_tile("transparent", "lightgray"),
+              Cmp = color_tile("transparent", "gray"),
               Yds = color_tile("transparent", "lightblue"),
               TD = color_tile("transparent", "pink"),
-              Int = color_tile("lightgray", "transparent"))) 
+              Int = color_tile("gray", "transparent"))) 
 
 # datatable(avgs_table_set,           
 #       rownames = FALSE,
