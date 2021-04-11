@@ -197,7 +197,6 @@ brady_PCTs <- brady_PCTs[order(brady_PCTs$Player, desc(brady_PCTs$Year)), ]
 ```
 
 
-
 On the day of Super Bowl LV before the game got under way, I noted [this](https://repartee-per-se.netlify.app/post/if-it-walks-like-a-goat/) about Tom Brady.  This was, admittedly, based on not much more than a gut feeling I got about his performance over his career, as well as my perceptions of him throughout his time in the NFL.  But I needed to know - exactly how good had Brady been during that five years when he could have been "retired" and waiting to get voted into the HOF?  What did he do with himself instead of putting on the production of the triumphant Hall of Famer returning to play for one more ring?  What did he do actually playing football in those five years?
 
 
