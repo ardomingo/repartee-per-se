@@ -49,22 +49,28 @@ name = "Featured"
 # social menu links
 
 [[social]]
-  name = "github"
+  name = "facebook"
   type = "social"
   weight = 1
-  url = "https://github.com/#"
+  url = "https://www.facebook.com/andy.domingo/"
+
+[[social]]
+  name = "github"
+  type = "social"
+  weight = 2
+  url = "https://github.com/ardomingo/"
 [[social]]
   name = "twitter"
-  weight = 2
-  url = "https://twitter.com/#"
+  weight = 3
+  url = "https://twitter.com/andresrdomingo/"
 [[social]]
   name = "linkedin"
-  weight = 3
-  url = "https://www.linkedin.com/in/#"
-[[social]]
-  name = "rss"
   weight = 4
-  url = "index.xml"
+  url = "https://www.linkedin.com/in/andres-domingo-75682343/"
+#[[social]]
+#  name = "rss"
+#  weight = 4
+#  url = "index.xml"
 
 # other supported social links
 # name = "youtube"
