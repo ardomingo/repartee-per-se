@@ -198,14 +198,14 @@ brady_PCTs <- brady_PCTs[order(brady_PCTs$Player, desc(brady_PCTs$Year)), ]
 
 
 
-On the day of Super Bowl LV before the game got under way, I noted [this](https://repartee-per-se.netlify.app/post/if-it-walks-like-a-goat/) about Tom Brady.  This was, admittedly, based on not much more than a gut feeling I got about his performance over his career, as well as my perceptions of him throughout his time in the NFL.  But I needed to know - how good has Brady been during that five years when he could have been "retired" and waiting to get voted into the HOF?  What did he do with himself instead of putting on the production of the triumphant Hall of Famer returning to play for one more ring?  What did he do actually playing those five years?
+On the day of Super Bowl LV before the game got under way, I noted [this](https://repartee-per-se.netlify.app/post/if-it-walks-like-a-goat/) about Tom Brady.  This was, admittedly, based on not much more than a gut feeling I got about his performance over his career, as well as my perceptions of him throughout his time in the NFL.  But I needed to know - exactly how good had Brady been during that five years when he could have been "retired" and waiting to get voted into the HOF?  What did he do with himself instead of putting on the production of the triumphant Hall of Famer returning to play for one more ring?  What did he do actually playing football in those five years?
 
 
 <center>
 ### Brady v. The League
 </center>
 
-If you look at the more vital passing statistics including attempts (Att), completions (Cmp), passing yards (Yds), touchdowns (TD), and interceptions (Int), it becomes pretty clear how Brady has spent his time.  His averages for the five seasons between 2015-2019 outpaced what the entire NFL averaged in each of those seasons in 4 out of 5 of those categories.  Brady's averages over that span, against the league:
+If you look at the more vital passing statistics including attempts (Att), completions (Cmp), passing yards (Yds), touchdowns (TD), and interceptions (Int), it becomes pretty clear how Brady spent his time.  His averages for the five seasons between 2015-2019 outpaced what the NFL averaged in each of those seasons in 4 out of 5 of those categories.  Brady's averages over that span, against the league:
 
 
 - Rank **3rd** in Attempts
@@ -282,6 +282,6 @@ formattable(brady_PCTs,
 
 ```
 
-He also won a couple of Super Bowls in that span for good measure...and then with another career year this past season, with a different team, in a different conference, he won another.
+He also won a couple of Super Bowls in that span for good measure...and then, with another career year this past season, with a different team, in a different conference, *he won another*.
 
 <br><br>
