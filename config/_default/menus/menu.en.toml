@@ -1,7 +1,7 @@
 [[main]]
   name = "Home"
   url = ""
-  weight = -110
+  weight = 1
 
 #[[main]]
 #  name = "Archives"
@@ -11,7 +11,7 @@
 [[main]]
 name = "Featured"
   identifier = "Featured"
-  weight = -109
+  weight = 2
 
 [[main]]
   name = "Featured"
@@ -22,7 +22,7 @@ name = "Featured"
 [[main]]
   name = "Social Links"
   identifier = "Social Links"
-  weight = -108
+  weight = 3
 [[main]]
   parent = "Social Links"
   name = "GitHub"
@@ -44,7 +44,7 @@ name = "Featured"
 [[main]]
   name = "About"
   url = "about/"
-  weight = -107
+  weight = 4
 
 # social menu links
 
