@@ -6,11 +6,10 @@ aliases:
 author: A.R. Domingo
 date: "2020-01-01"
 description: Repartee, per se
-title: About
+title: Repartee, per se
 ---
 
 
-<em>REPARTEE, PER SE</em>
 
 This blog is a collection of articles in the data journalism style across a range of topics, from baseball to politics to humor.  Most of these pieces include some aspect of data analysis to help illustrate how these methods can relate to real, everyday questions we might come across in our lives.
 
@@ -18,18 +17,20 @@ In addition to each post have a certain category, they will also have a more spe
 
 This site is built using R, RStudio, Hugo, and the `blogdown` package for R.  
 
-R, RStudio, and blogdown:
 
-- https://cran.r-project.org/
-- https://www.rstudio.com/
-- https://github.com/rstudio/blogdown
+ <a href="https://cran.r-project.org" rel="some text"> <img src="/./about_files/Rlogo.png" alt="CRAN" width = 6%/></a>
+ <a href="https://www.rstudio.com/" rel="some text"> <img src="/./about_files/RStudio-Logo.png" alt="RStudio" 
+  width = 6%/></a>
+ <a href="https://cran.r-project.org" rel="some text"> <img src="/./about_files/hex-blogdown.png" alt="{blogdown}" 
+  width = 4.5%/></a>
+
 
 
 The Hugo theme is Clarity, available at:
 
 - https://themes.gohugo.io/hugo-clarity/
 
-
+<br><br>
 
 PRIMARY CONTRIBUTOR
 
