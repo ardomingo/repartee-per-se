@@ -29,7 +29,12 @@ The Hugo theme is Clarity, available at:
 
 - https://themes.gohugo.io/hugo-clarity/
 
+<<<<<<< HEAD
 <br><br>
+=======
+
+
+>>>>>>> 17d32e6460c0f3270cb1386814cad364b1b7a367
 
 PRIMARY CONTRIBUTOR
 
