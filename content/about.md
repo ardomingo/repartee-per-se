@@ -20,9 +20,21 @@ This site is built using R, RStudio, Hugo, and the `blogdown` package for R.
 
 R, RStudio, and blogdown:
 
-- https://cran.r-project.org/
-- https://www.rstudio.com/
-- https://github.com/rstudio/blogdown
+ <a href="https://cran.r-project.org" rel="some text"> <img src="/./about_files/Rlogo.png" alt="CRAN" width = 6%/></a>
+ <a href="https://www.rstudio.com/" rel="some text"> <img src="/./about_files/RStudio-Logo.png" alt="RStudio" 
+  width = 6%/></a>
+ <a href="https://cran.r-project.org" rel="some text"> <img src="/./about_files/hex-blogdown.png" alt="{blogdown}" 
+  width = 4.5%/></a>
+
+
+
+
+<br>
+
+
+
+
+
 
 
 The Hugo theme is Clarity, available at:
