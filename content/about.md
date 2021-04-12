@@ -24,18 +24,6 @@ This site is built using R, RStudio, Hugo, and the `blogdown` package for R.
  <a href="https://cran.r-project.org" rel="some text"> <img src="/./about_files/hex-blogdown.png" alt="{blogdown}" 
   width = 4.5%/></a>
 
-<<<<<<< HEAD
-=======
-
-
-
-<br>
-
-
-
-
-
->>>>>>> 21adf13dbbe807bf71ddb0fb0490afeccf53c8cf
 
 
 The Hugo theme is Clarity, available at:
