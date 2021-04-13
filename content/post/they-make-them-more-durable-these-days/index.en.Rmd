@@ -1,0 +1,173 @@
+---
+title: They Make Them More Durable These Days
+author: AR Domingo
+date: '2021-04-13'
+slug: they-make-them-more-durable-these-days
+categories:
+  - Politics
+tags:
+  - timevis
+---
+
+
+<center>
+### Four-of-a-kind won't cut it
+</center>
+
+
+```{r setup,echo=FALSE,message=FALSE,warning=FALSE,include=FALSE,cache=TRUE}
+
+library(tidyverse)
+library(rvest)
+library(timevis)
+library(lubridate)
+library(widgetframe)
+
+
+###Life Dates
+
+#Read html table
+html_dl <- read_html("https://www.presidentsusa.net/birth.html")
+
+#Pull table data (use Google Chrome & SelectorGadget to find element)
+bd_dates <- html_dl %>% 
+              html_element(".callout") %>% 
+              html_table()
+
+
+
+#Convert dates
+bd_dates$`Birth Date` <- mdy(bd_dates$`Birth Date`)
+bd_dates$`Death Date` <- mdy(bd_dates$`Death Date`)
+
+#Match President Franklin Roosevelt to Franklin D. Roosevelt
+bd_dates$President[31] <- "Franklin D. Roosevelt"
+bd_dates$President[40] <- "George H.W. Bush"
+
+
+### Term Dates
+
+#Read table
+html_terms <- 
+  read_html("https://www.presidentsusa.net/presvplist.html")
+
+term_dates <- html_terms %>% 
+  html_element(".col-md-9") %>% 
+  html_table()
+
+term_dates <- term_dates[, 1:3]
+
+
+#Convert dates
+term_dates$`Term Began` <- mdy(term_dates$`Term Began`)
+term_dates$`Term Ended` <- mdy(term_dates$`Term Ended`)
+
+#Match "President" column
+colnames(term_dates)[1] <- "President"
+
+#Match President James Garfield to James A. Garfield
+term_dates$President[20] <- "James A. Garfield"
+term_dates$President[41] <- "George H.W. Bush"
+
+
+#Prep timevis-usable dataframe
+
+#Create dataframe for timeline
+pres_set <- left_join(term_dates, bd_dates)            
+
+#Set NA death dates to today() to ensure plots for living presidents extend all the way to the edge of the graph
+pres_set$`Death Date`[is.na(pres_set$`Death Date`)] <- today()
+
+
+###Add party affiliation from github repo: 
+  #(https://gist.githubusercontent.com/namuol/2657233/raw/74135b2637e624848c163759be9cd14ae33f5153/presidents.csv)
+
+party_table <- read.csv("https://raw.githubusercontent.com/awhstin/Dataset-List/master/presidents.csv")
+
+
+#Match names to pres_set dataframe
+colnames(party_table)[1] <- "President"
+party_table$President[39] <- "Jimmy Carter"
+party_table$President[42] <- "Bill Clinton"
+party_table$President[21] <- "Chester Arthur"
+party_table$President[9] <- "William Henry Harrison"
+party_table$President[34] <- "Dwight Eisenhower"
+
+
+#Correct frame and add Biden data
+party_table$Years.In.Office[45] <- "2017-2021"
+party_table[nrow(party_table) + 1,] = c("Joe Biden","2021-", "46th", "Democratic")
+pres_set <- left_join(pres_set, party_table, by = "President")
+pres_set <- pres_set[-c(23,25), ]
+
+
+
+#Set up dataframes for timeline rendering
+groups <- data.frame(
+  id = unique(c(pres_set$Party)), 
+  content = unique(c(pres_set$Party)))
+
+
+
+#Setup dataframe
+pres_timeline <- data.frame(
+  #id      = pres_set$President,
+  content = pres_set$President,
+  start   = pres_set$`Term Began`,
+  end     = pres_set$`Death Date`,
+  group = pres_set$Party)
+
+
+
+
+```
+
+
+
+<p>
+We have six presidents.  When Joseph Biden took the Oath of Office on January 20, 2021, the United States officially had one current president, and **five living former** presidents (Donald Trump, Barack Obama, George W Bush, Bill Clinton, and Jimmy Carter).  But having so many living presidents isn't exactly rare - except for a short two-year gap between 2007 and 2009, we've had at least 5 presidents (the one current and four living former presidents) ever since George HW Bush took office in January of 1989. That's 30 out of the last 32 years, and for about 5 of those years, we had 6 with us, just as we have now. 
+
+It's not rare, since about 1989.  It *was* rare for the entire remaining history of the United States.  In fact, it was rare to have five, including the current president.  Only at one other time in American history prior to the fall of the Soviet Union did we have a total of six presidents alive, and one of them was Abraham Lincoln.  
+
+Between the short interval when Lincoln was inaugurated in March of 1861, and the time that former president John Tyler died at the age of 71 on January 18, 1862, was the last period during which the US saw *six* presidents, prior to the 1990s.  These were Lincoln, James Buchanan, Franklin Pierce, Millard Fillmore, Martin Van Buren, and the aforementioned Tyler.
+</p>
+
+<center>
+<font size="4" style="color: indianred;">**A Timeline of the US Presidents (Inauguration to Death)**</font><br><br>
+<font size="2" style="color: cornflowerblue;">*Drag and zoom on timeline below to change focus*</font>
+</center>
+
+
+```{r timeline, echo=FALSE, message=FALSE, warning=FALSE}
+
+library(timevis)
+library(htmlwidgets)
+library(widgetframe)
+
+
+
+framed_timeline <- timevis(pres_timeline, groups = groups, height = 600)
+
+frameWidget(framed_timeline)
+
+
+```
+
+
+
+<p>
+<center>
+#### But sometimes all you have is an Ace-[hole]
+</center>
+
+
+But it's even more rare to have just one president...this has happened only twice, for a total of about 22 months.
+
+It happened when Calvin Coolidge shed his mortal coil in January of 1933, leaving only the current president, Herbert Hoover, the sole living member of the Presidents Club.  But only two months later, he was joined by the newly inaugurated Franklin D Roosevelt.
+
+It happened for a second, and much longer time, between when Lyndon B Johnson died in January 1973 and when Gerald Ford took office in August of 1974 following President Nixon's resignation.  It was particularly interesting this time, as the only president was the then-current president, the embattled Richard Nixon.  Yes, it was Nixon alone, at the height of his hubris and scandal, facing imminent political and perhaps criminal catastrophe, who represented the Office of the Presidency of the United States.
+</p>
+
+<br><br>
+Data set: [**Presidential Timeline**](https://github.com/ardomingo/repartee-per-se)
+<br>
