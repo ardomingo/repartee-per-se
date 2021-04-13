@@ -1,8 +1,8 @@
 ---
-title: They Make Them More Durable These Days
+title: Five-Card Monte?
 author: AR Domingo
 date: '2021-04-13'
-slug: they-make-them-more-durable-these-days
+slug: five-card-monte
 categories:
   - Politics
 tags:
@@ -11,7 +11,7 @@ tags:
 
 
 <center>
-### Four-of-a-kind won't cut it
+<h3>Four-of-a-kind won't cut it</h3>
 </center>
 
 
@@ -80,8 +80,6 @@ pres_set$`Death Date`[is.na(pres_set$`Death Date`)] <- today()
 
 
 ###Add party affiliation from github repo: 
-  #(https://gist.githubusercontent.com/namuol/2657233/raw/74135b2637e624848c163759be9cd14ae33f5153/presidents.csv)
-
 party_table <- read.csv("https://raw.githubusercontent.com/awhstin/Dataset-List/master/presidents.csv")
 
 
@@ -100,12 +98,14 @@ party_table[nrow(party_table) + 1,] = c("Joe Biden","2021-", "46th", "Democratic
 pres_set <- left_join(pres_set, party_table, by = "President")
 pres_set <- pres_set[-c(23,25), ]
 
-
+#Create groups
+party_group <- unique(c(pres_set$Party))
+party_group <- party_group[c(1:2,4,6,3,5)]
 
 #Set up dataframes for timeline rendering
 groups <- data.frame(
-  id = unique(c(pres_set$Party)), 
-  content = unique(c(pres_set$Party)))
+  id = party_group, 
+  content = party_group)
 
 
 
@@ -118,19 +118,15 @@ pres_timeline <- data.frame(
   group = pres_set$Party)
 
 
-
-
 ```
 
 
-
-<p>
 We have six presidents.  When Joseph Biden took the Oath of Office on January 20, 2021, the United States officially had one current president, and **five living former** presidents (Donald Trump, Barack Obama, George W Bush, Bill Clinton, and Jimmy Carter).  But having so many living presidents isn't exactly rare - except for a short two-year gap between 2007 and 2009, we've had at least 5 presidents (the one current and four living former presidents) ever since George HW Bush took office in January of 1989. That's 30 out of the last 32 years, and for about 5 of those years, we had 6 with us, just as we have now. 
 
 It's not rare, since about 1989.  It *was* rare for the entire remaining history of the United States.  In fact, it was rare to have five, including the current president.  Only at one other time in American history prior to the fall of the Soviet Union did we have a total of six presidents alive, and one of them was Abraham Lincoln.  
 
 Between the short interval when Lincoln was inaugurated in March of 1861, and the time that former president John Tyler died at the age of 71 on January 18, 1862, was the last period during which the US saw *six* presidents, prior to the 1990s.  These were Lincoln, James Buchanan, Franklin Pierce, Millard Fillmore, Martin Van Buren, and the aforementioned Tyler.
-</p>
+
 
 <center>
 <font size="4" style="color: indianred;">**A Timeline of the US Presidents (Inauguration to Death)**</font><br><br>
@@ -157,7 +153,7 @@ frameWidget(framed_timeline)
 
 <p>
 <center>
-#### But sometimes all you have is an Ace-[hole]
+<h3>But sometimes all you have is an Ace-[hole]</h3>
 </center>
 
 

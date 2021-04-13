@@ -82,14 +82,15 @@ party_table$Years.In.Office[45] <- "2017-2021"
 party_table[nrow(party_table) + 1,] = c("Joe Biden","2021-", "46th", "Democratic")
 
 pres_set <- left_join(pres_set, party_table, by = "President")
-pres_set <- pres_set[c(23,25), ]
+pres_set <- pres_set[-c(23,25), ]
 
-
+party_group <- unique(c(pres_set$Party))
+party_group <- party_group[c(1:2,4,3,5:6)]
 
 #Set up dataframes for timeline rendering
 groups <- data.frame(
-  id = unique(c(pres_set$Party)), 
-  content = unique(c(pres_set$Party)))
+  id = party_group, 
+  content = party_group)
 
 
 
