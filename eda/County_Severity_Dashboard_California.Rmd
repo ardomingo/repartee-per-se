@@ -1,0 +1,612 @@
+---
+title: "COVID-19 County Severity Dashboard - CALIFORNIA"
+output: 
+  flexdashboard::flex_dashboard:
+    theme: cerulean
+    orientation: columns
+    vertical_layout: fill
+---
+
+
+
+```{r  datadownload, include=FALSE, echo=FALSE, message=FALSE, cache=TRUE}
+
+
+library(here)
+library(bookdown)
+library(flexdashboard)
+library(tidyverse)
+library(scales)
+library(data.table)
+library(DT)
+library(RColorBrewer)
+library(lubridate)
+library(ggthemes)
+library(plotly)
+library(htmlwidgets)
+library(sf)
+library(leaflet)
+library(maps)
+library(htmltools)
+library(viridis)
+library(rgdal)
+library(utils)
+library(readxl)
+library(tigris)
+
+
+here("Covid Severity Dashboard")
+
+#setwd("C:/Users/andre/OneDrive/01. Projects/CoViD-19")
+
+#setwd(file.path("X:", "OneDrive", "01. Projects", "CoViD-19"))
+here()
+
+#Download current data
+NYT_Cnty <- read.csv("https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-counties.csv", header = TRUE)
+# NYT_State <- read.csv("https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-states.csv", header = TRUE)
+
+
+####################################################
+#GET ALL CA ZIP CODES
+#CA Zip Codes
+#CAZ <- "X:/OneDrive/02. Data/Geographic Data/US Zip Code Shapefiles/CA/acs2019_5yr_B01003_86000US91916.zip"
+
+options(tigris_use_cache = TRUE)
+
+CAZ <- counties(state = "CA")
+
+
+CA_Zipcodes_File <- unzip(CAZ)
+#zipmap <- readOGR(dsn = path.expand("CA_Shapes/CA_Counties"), layer = "CA_Counties_TIGER2016" )
+
+
+CA_Zipcodes <- st_read(CA_Zipcodes_File[3]) %>% 
+  st_transform("+proj=longlat +datum=WGS84")
+
+
+#Set up map
+download.file("https://data.ca.gov/dataset/e212e397-1277-4df3-8c22-40721b095f33/resource/b0007416-a325-4777-9295-368ea6b710e6/download/ca-county-boundaries.zip",
+              "CA_Shapes.zip")
+
+CA1 <- unzip("CA_Shapes.zip")
+#zipmap <- readOGR(dsn = path.expand("CA_Shapes/CA_Counties"), layer = "CA_Counties_TIGER2016" )
+
+
+CA_areas1 <- st_read(CA1[6]) %>% 
+  st_transform("+proj=longlat +datum=WGS84")
+
+
+```
+
+
+
+```{r setup, include=FALSE, echo=FALSE, message=FALSE}
+
+
+#Filter for CA and convert dates
+CA_Counties <- filter(NYT_Cnty, state == "California")
+CA_Counties$date <- as.Date(CA_Counties$date)
+
+
+#Process county by county data
+
+#CA_County_Max <- as.data.table(CA_Counties)
+
+CA_County_Max <- as.data.table(CA_Counties)
+CA_County_Max <- na.omit(CA_County_Max)
+#Find maximum for each county
+CA_CaseMax <- CA_County_Max[CA_County_Max[, .I[which.max(cases)], by = county]$V1]
+
+# CA_pops <- read.csv("C:/Users/andre/OneDrive/01. Projects/CoViD-19/CA County Population.csv", header = TRUE)
+
+CA_pops <- read.csv("https://raw.githubusercontent.com/ardomingo/COVID-County-Severity-CA/main/CA%20County%20Population.csv", header = TRUE)
+
+#Upload data and merge with NYT data
+# CA_pops <- read.csv("C:/Users/andre/OneDrive/01. Projects/CoViD-19/CA County Population.csv", header = TRUE)
+CA_merged <- merge(CA_CaseMax, CA_pops, by = "county")
+
+#Add Rate/1000 calculation
+CA_calc <- mutate(CA_merged, case_rate1k = round(1000 * (cases/population), digits = 2), 
+                  death_rate1k = round(1000 * (deaths/population), digits = 2))
+
+
+#Calculate recent hotspots
+hotspot_set1 <- filter(CA_Counties, date == today()-days(1))
+hotspot_set14 <- filter(CA_Counties, date == today()-days(15))
+
+
+hotspot_comp <- merge(hotspot_set1, hotspot_set14, by = "county")
+hotspot_comp1 <- merge(hotspot_comp, CA_pops, by = "county")
+
+hotspot_comp_calc <- mutate(hotspot_comp1, caseslast14 = (cases.x - cases.y)/population *1000, 
+                            deathslast14 = (deaths.x - deaths.y)/population*1000, 
+                            case_perc = round(-((cases.y/cases.x)-1)*100, 2),
+                            death_perc = round(-((deaths.y/deaths.x)-1)*100, 2))
+
+hotspot_comp_calc$case_perc[is.na(hotspot_comp_calc$case_perc)] <- 0
+hotspot_comp_calc$death_perc[is.na(hotspot_comp_calc$death_perc)] <- 0
+#####
+
+
+hotspot_comp_tots14 <- mutate(hotspot_comp1, caseslast14 = (cases.x - cases.y)/14, 
+                             deathslast14 = (deaths.x - deaths.y)/14)
+
+
+
+
+
+
+##################################
+
+# CA_areas1 <- st_read("C:/Users/andre/OneDrive/01. Projects/CoViD-19/CA_Counties/CA_Counties_TIGER2016.shp") %>%
+#   st_transform("+proj=longlat +datum=WGS84")
+#########################################################
+
+
+#CALCULATE HOT SPOTS LAST 14 DAYS
+
+#Find +/-
+hotspot_map_data <- merge(hotspot_comp_calc, hotspot_comp_tots14, by = "county")
+
+
+hotspot_map_set <- merge(CA_areas1, hotspot_map_data, by.x = "NAME", by.y = "county")
+
+pal <- colorRampPalette(c("blue", "purple"))
+
+bar_colors <- colorRampPalette(viridis(length(CA_merged$county)))
+
+
+#Setup City of Riverside Map
+
+riv_zips <- read_xlsx("C:/Users/andre/OneDrive/01. Projects/CoViD-19/RiversideCityZips.xlsx")
+
+RivCity <- riv_zips %>% 
+  filter(ZIPCODE >= 92501 & ZIPCODE <= 92509)
+
+RivCity <- RivCity[, 1:3] %>% 
+  mutate(Change = round(100*(`New Cases` / `Total Cases **`), digits = 2))
+
+RVSDZip <- unzip("C:/Users/andre/OneDrive/01. Projects/CoViD-19/Zip_Codes.zip")
+
+
+
+RVSD <- st_read(RVSDZip[5]) %>% 
+  st_transform("+proj=longlat +datum=WGS84")
+riv_map_set <- merge(RVSD, RivCity, by.x = "ZIPCODE", by.y = "ZIPCODE")
+
+
+```
+
+# LAST 14 DAYS
+
+Column {data-width=500}
+-----------------------------------------------------------------------
+
+### Percent Case Increase by County
+
+```{r map, out.width= '100%'}
+
+
+palC <- colorNumeric(
+  palette = "Reds",
+  domain = hotspot_map_set$case_perc)
+
+map_popupsC <- paste(
+  "County: ", hotspot_map_set$NAME, "|",
+  "% Change: ", hotspot_map_set$case_perc, "", sep = " ")
+
+map <-
+leaflet(hotspot_map_set) %>%
+  setView(-120, 37.7, 6) %>%
+  addPolygons(stroke = TRUE, weight = .25, fillOpacity = .4,
+              smoothFactor = 0.5, color = ~palC(case_perc),
+              label = map_popupsC,
+              highlightOptions = 
+                highlightOptions(color = "white", weight = 1.75, opacity = 1,
+                bringToFront = TRUE),
+              labelOptions = labelOptions(style = list(
+                "color" = "darkred",
+                "font-family" = "serif",
+                "font-variant" = "small-caps",
+                "box-shadow" = "3px 3px rgba(0,0,0,0.25)",
+                "font-size" = "14px",
+                "border-color" = "rgba(0,0,0,0.5)"))) %>% 
+  addProviderTiles("CartoDB.Positron")
+
+map %>% 
+  config(displayModeBar = FALSE)
+```
+
+### Sortable Data Table
+
+```{r table, out.width='100'}
+
+#Add data table
+table_set <- hotspot_map_data[, c(1,5,6,12,15,16)]
+colnames = c("County", "Cases", "Deaths", "Population", "Cases % Change", "Deaths % Change")  #Case Rate per 1000")
+
+datatable(table_set, colnames = c("County", "Total Cases", "Total Deaths", "Population", "Cases 14-Day % Change", "Deaths 14-Day % Change"), 
+          rownames = FALSE, options = list(order = list(list(4, "desc")), pageLength = 2,
+                                           rowCallback = JS("function(r,d) {$(r).attr('height', '75px')}")))
+
+```
+
+
+
+
+Column {data-width=500}
+-----------------------------------------------------------------------
+
+### Cases - Last 14 Days
+
+```{r bar14, message=FALSE, warning=FALSE, out.width='100'}
+#Plot bar chart for cases last 14 days
+bar_cases_last14 <-
+  ggplot(data = hotspot_comp_tots14, aes(x = reorder(county, -caseslast14), y = caseslast14, 
+                                         fill = county, group = 1, 
+                                         text = paste("Cases: ", caseslast14, "\n",
+                                                      "County: ", county, sep = ""))) +
+  geom_bar(stat = "identity") +
+  labs(title = "Average Daily Cases - Last 14 Days", x = "County") +
+  scale_y_continuous(name = "Confirmed Cases", label = comma) +
+  theme_classic() +
+  theme(axis.text.x=element_text(angle=90,hjust=0,vjust = .4)) +
+  theme(legend.position = "none") +
+  scale_fill_manual(values = bar_colors(58))
+
+
+ggplotly(bar_cases_last14, tooltip = c("County", "text"))
+
+```
+
+
+# CASES
+
+Column {data-width=500}
+-----------------------------------------------------------------------
+
+### Time Series
+
+```{r line case, echo=FALSE, message=FALSE, warning=FALSE, out.width='100'}
+
+#Linechart cases
+line_cases <-
+  ggplot() +
+  geom_line(data = CA_Counties, aes(x = date, y = cases, color = county, group = county,
+                                    text = paste("Date: ", date, "\n",
+                                                 "Cases: ", cases, "\n",
+                                                 "County: ", county,
+                                                 sep = "")), size = .5, alpha = .5) +
+  scale_y_continuous(name = "Confirmed Cases", labels = comma)+
+  scale_x_date(name = "Month") + 
+  labs(title = "Confirmed Cases", subtitle = "CA Counties", caption = "Fig. 1") +
+  theme_classic() +
+  theme(axis.text.x=element_text(angle=90,hjust=0,vjust = .4)) +
+  theme(legend.position = "none") +
+  scale_color_manual(values = bar_colors(length(unique(CA_Counties$county))))
+
+ggplotly(line_cases, tooltip = "text")
+
+```
+
+
+
+
+
+
+
+Column {data-width=500}
+-----------------------------------------------------------------------
+
+### Total Cases per 100,000 by County
+
+```{r barchart caserate1k, echo=FALSE, message=FALSE, warning=FALSE, out.width='100'}
+
+###Plot barchart of rate data###
+
+#Normalize data by county population
+
+#Upload data and merge with NYT data
+CA_pops <- read.csv("C:/Users/andre/OneDrive/01. Projects/CoViD-19/CA County Population.csv", header = TRUE)
+CA_merged <- merge(CA_CaseMax, CA_pops, by = "county")
+
+
+#Add Rate/1000 calculation
+CA_calc <- mutate(CA_merged, case_rate1k = round(100000 * (cases/population), digits = 2), 
+                  death_rate1k = round(1000 * (deaths/population), digits = 2))
+
+
+#Plot bar chart cases
+bar_cases1k <- 
+ggplot(data = CA_calc, aes(x = reorder(county, -case_rate1k), y = case_rate1k, 
+                           fill = county, group = 1, 
+                           text = paste("Cases: ", case_rate1k, "\n",
+                                        "County: ", county, sep = ""))) +
+  geom_bar(stat = "identity") +
+  labs(title = "Confirmed Cases per 100,000", subtitle = "CA Counties", x = "County") +
+  scale_y_continuous(name = "Total Confirmed Cases", label = comma) +
+  theme_classic() +
+  theme(axis.text.x=element_text(angle=90,hjust=0,vjust = .4)) +
+  theme(legend.position = "none") +
+  geom_hline(yintercept = median(CA_calc$case_rate1k), color="blue", alpha = .25) +
+  scale_fill_manual(values =bar_colors(length(unique(CA_Counties$county))))
+
+ggplotly(bar_cases1k, tooltip = c("County", "text"))
+
+
+```
+
+
+
+
+
+
+# DEATHS
+
+Column {data-width=500}
+-----------------------------------------------------------------------
+
+### Time Series
+
+```{r line death, echo=FALSE, message=FALSE, warning=FALSE, out.width='100'}
+
+
+#Linechart deaths
+
+line_deaths <-
+  ggplot() +
+  geom_line(data = CA_Counties, aes(x = date, y = deaths, color = county, group = county,
+                                    text = paste("Date: ", date, "\n",
+                                                 "Deaths: ", deaths, "\n",
+                                                 "County: ", county,
+                                                 sep = "")), size = .5, alpha = .5) +
+  scale_y_continuous(name = "Total Confirmed Deaths", labels = comma)+
+  scale_x_date(name = "Month") + 
+  labs(title = "Confirmed Deaths", subtitle = "CA Counties", caption = "Fig. 1") +
+  theme_classic() +
+  theme(axis.text.x=element_text(angle=90,hjust=0,vjust = .4)) +
+  theme(legend.position = "none")+
+  scale_color_manual(values = bar_colors(length(unique(CA_Counties$county))))
+
+ggplotly(line_deaths, tooltip = "text")
+
+
+```
+
+
+
+Column {data-width=500}
+-----------------------------------------------------------------------
+
+### Total Deaths per 1,000 by County
+
+```{r barchart deathrate1k, echo=FALSE, message=FALSE, warning=FALSE, out.width='100'}
+
+#Plot bar chart for deaths per 1000
+bar_deaths1k <-
+ggplot(data = CA_calc, aes(x = reorder(county, -death_rate1k), y = death_rate1k, fill = county, group = 1,
+                           text = paste("Deaths: ", death_rate1k, "\n",
+                                        "County: ", county, sep = ""))) +
+  geom_bar(stat = "identity") +
+  labs(title = "Confirmed Deaths per 1000", subtitle = "CA Counties", x = "County", caption = "Fig. 6") +
+  scale_y_continuous(name = "Confirmed Cases", label = comma) +
+  theme_classic() +
+  theme(axis.text.x=element_text(angle=90,hjust=0,vjust = .4)) +
+  theme(legend.position = "none") +
+  geom_hline(yintercept = median(CA_calc$death_rate1k), color="blue", alpha = .25)+
+  scale_fill_manual(values =bar_colors(length(unique(CA_Counties$county))))
+
+ggplotly(bar_deaths1k, tooltip = c("County", "text"))
+
+
+```
+
+
+
+
+
+CITY OF RIVERSIDE {.tabset}
+===================================== 
+
+
+## City of Riverside by Zipcode 
+
+<font size="2"><em>*Most recent data available are as of 04/02/2021.</em></font><br><br>
+
+```{r rivcity, echo=FALSE, message=FALSE, warning=FALSE, out.width='100%'}
+
+
+
+datatable(RivCity, rownames = FALSE, colnames = c("Zip Code", "Total Cases", "New Cases", "% Change"))
+
+
+```
+
+
+## Riverside Map 
+
+
+```{r riv_map, echo=FALSE, message=FALSE, warning=FALSE, out.width='100%'}
+
+
+map_popups_rivcity <- paste(
+  "Zipcode: ", riv_map_set$ZIPCODE, "|",
+  "% Change: ", riv_map_set$Change, "", sep = " ")
+
+palRivCity <- colorNumeric(
+  palette = "Reds",
+  domain = riv_map_set$Change)
+
+
+rivcitymap <-
+  leaflet(riv_map_set) %>%
+  setView(-117.39535758810685, 33.93643526692571, 11) %>% 
+  addPolygons(stroke = TRUE, weight = .25, fillOpacity = .4,
+              smoothFactor = 0.5, color = ~palRivCity(Change),
+              label = map_popups_rivcity,
+              highlightOptions = 
+                highlightOptions(color = "white", weight = 1.75, opacity = 1,
+                                 bringToFront = TRUE),
+              labelOptions = labelOptions(style = list(
+                "color" = "darkred",
+                "font-family" = "serif",
+                "font-variant" = "small-caps",
+                "box-shadow" = "3px 3px rgba(0,0,0,0.25)",
+                "font-size" = "14px",
+                "border-color" = "rgba(0,0,0,0.5)"))) %>% 
+  addProviderTiles("CartoDB.Positron")
+
+rivcitymap %>% 
+  config(displayModeBar = FALSE)
+
+```
+
+
+
+CITY OF CORONA {.tabset}
+===================================== 
+
+
+## City of Corona by Zipcode 
+
+
+```{r corona_city_setup, message=FALSE, warning=FALSE, include=FALSE, echo=FALSE}
+#Setup City of Corona Map
+
+
+corona_zips <- read_xlsx("C:/Users/andre/OneDrive/01. Projects/CoViD-19/RiversideCityZips2.xlsx")
+
+CoronaCity <- corona_zips %>% 
+  filter(ZIPCODE >= 92879 & ZIPCODE <= 92883)
+
+CoronaCity <- CoronaCity[, 1:3] %>% 
+  mutate(Change = round(100*(`New Cases` / `Total Cases **`), digits = 2))
+
+
+CA_Zipcodes <- st_read(CA_Zipcodes_File[3]) %>% 
+  st_transform("+proj=longlat +datum=WGS84")
+
+corona_map_set <- merge(CA_Zipcodes, CoronaCity, by.x = "name", by.y = "ZIPCODE")
+```
+
+
+```{r corona_city, echo=FALSE, message=FALSE, warning=FALSE, out.width='100%'}
+
+
+datatable(CoronaCity, rownames = FALSE, colnames = c("Zip Code", "Total Cases", "New Cases", "% Change"))
+
+```
+
+
+
+## Corona Map 
+
+
+```{r corona_map, echo=FALSE, message=FALSE, warning=FALSE, out.width='100%'}
+
+
+map_popups_coronacity <- paste(
+  "Zipcode: ", corona_map_set$ZIPCODE, "|",
+  "% Change: ", corona_map_set$Change, "", sep = " ")
+
+palCoronaCity <- colorNumeric(
+  palette = "Reds",
+  domain = corona_map_set$Change)
+
+
+
+coronacitymap <-
+  leaflet(corona_map_set) %>%
+  setView(-117.56173120190176, 33.869114757649356, 11) %>% 
+  addPolygons(stroke = TRUE, weight = .25, fillOpacity = .4,
+              smoothFactor = 0.5, color = ~palCoronaCity(Change),
+              label = map_popups_coronacity,
+              highlightOptions = 
+                highlightOptions(color = "white", weight = 1.75, opacity = 1,
+                                 bringToFront = TRUE),
+              labelOptions = labelOptions(style = list(
+                "color" = "darkred",
+                "font-family" = "serif",
+                "font-variant" = "small-caps",
+                "box-shadow" = "3px 3px rgba(0,0,0,0.25)",
+                "font-size" = "14px",
+                "border-color" = "rgba(0,0,0,0.5)"))) %>% 
+  addProviderTiles("CartoDB.Positron")
+
+coronacitymap %>% 
+  config(displayModeBar = FALSE)
+```
+
+
+
+CITY OF MORENO VALLEY {.tabset}
+===================================== 
+
+
+## City of Moreno Valley by Zipcode 
+
+
+```{r moval_city_setup, message=FALSE, warning=FALSE, include=FALSE, echo=FALSE}
+#Setup City of Corona Map
+
+
+moval_zips <- read_xlsx("C:/Users/andre/OneDrive/01. Projects/CoViD-19/RiversideCityZips2.xlsx")
+
+MoValCity <- moval_zips %>% 
+  filter(ZIPCODE >= 92551 & ZIPCODE <= 92557)
+
+MoValCity <- MoValCity[, 1:3] %>% 
+  mutate(Change = round(100*(`New Cases` / `Total Cases **`), digits = 2))
+
+
+moval_map_set <- merge(CA_Zipcodes, MoValCity, by.x = "name", by.y = "ZIPCODE")
+```
+
+
+```{r moval_city, echo=FALSE, message=FALSE, warning=FALSE, out.width='100%'}
+
+
+datatable(MoValCity, rownames = FALSE, colnames = c("Zip Code", "Total Cases", "New Cases", "% Change"))
+
+```
+
+
+
+## Moreno Valley Map 
+
+
+```{r moval_map, echo=FALSE, message=FALSE, warning=FALSE, out.width='100%'}
+
+
+map_popups_movalcity <- paste(
+  "Zipcode: ", moval_map_set$ZIPCODE, "|",
+  "% Change: ", moval_map_set$Change, "", sep = " ")
+
+palMoValCity <- colorNumeric(
+  palette = "Reds",
+  domain = moval_map_set$Change)
+
+
+movalcitymap <-
+  leaflet(moval_map_set) %>%
+  setView(-117.22584072103172, 33.916212657818946, 11) %>% 
+  addPolygons(stroke = TRUE, weight = .25, fillOpacity = .4,
+              smoothFactor = 0.5, color = ~palMoValCity(Change),
+              label = map_popups_movalcity,
+              highlightOptions = 
+                highlightOptions(color = "white", weight = 1.75, opacity = 1,
+                                 bringToFront = TRUE),
+              labelOptions = labelOptions(style = list(
+                "color" = "darkred",
+                "font-family" = "serif",
+                "font-variant" = "small-caps",
+                "box-shadow" = "3px 3px rgba(0,0,0,0.25)",
+                "font-size" = "14px",
+                "border-color" = "rgba(0,0,0,0.5)"))) %>% 
+  addProviderTiles("CartoDB.Positron")
+
+movalcitymap %>% 
+  config(displayModeBar = FALSE)
+```
+

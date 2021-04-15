@@ -1,0 +1,75 @@
+---
+title: To Settle a Score?
+author: AR Domingo
+date: '2021-04-14'
+slug: to-settle-a-score
+categories: 
+- Politics
+tags: 
+- Current Events
+---
+
+<center>
+### It took one score, but could it really be true this time?
+</center>
+
+
+
+```{r setup, message=FALSE, warning=FALSE, cache=TRUE,echo=FALSE}
+
+library(tidyverse)
+library(readxl)
+library(rvest)
+library(lubridate)
+
+
+afg <- read_xlsx("X:/OneDrive/02. Data/Military History/US Afghanistan War Deaths by Month.xlsx")
+
+
+afg_long <- pivot_longer(afg, cols = JAN:DEC, names_to = "Month", values_to = "Deaths")
+
+
+
+Date <- paste(afg_long$Year, afg_long$Month, rep("01", length(afg_long)), sep = "-")
+Month<-as_date(Date)
+
+
+afghan_war_table <- data.frame(Month, afg_long)
+#colnames(afghan_war_table)[1] <- Date
+
+colnames(afghan_war_table)[1] <- "Date"
+colnames(afghan_war_table)[3] <- "Month"
+
+
+levels <- c("DEC", "NOV", "OCT", "SEP", "AUG", "JUL", "JUN", "MAY", "APR", "MAR", "FEB", "JAN")     
+afghan_war_table$Month <- factor(afghan_war_table$Month, levels = levels)
+
+
+```
+
+
+
+
+
+<center>
+
+```{r vis1, echo=FALSE, message=FALSE, warning=FALSE}
+
+library(tidyverse)
+library(ggthemes)
+
+afghan_vis <- ggplot(afghan_war_table,aes(x=Year,y=Month, fill=Deaths)) +
+  geom_tile(color = "white", width=0.9, height=0.9) +
+  geom_label(label = afghan_war_table$Deaths, color = "white") +
+  theme_clean() +
+  scale_fill_gradient(low="blue", high="red") +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) +
+  labs(title = "US Deaths by Month - Afghanistan War (2001 - 2021?)", caption = "Source: Wikipedia") 
+
+afghan_vis
+
+
+```
+</center>
+
+
