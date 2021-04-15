@@ -5,10 +5,11 @@ library(readxl)
 library(rvest)
 library(here)
 library(lubridate)
+library(ggthemes)
 
-page <- read_html("https://en.wikipedia.org/wiki/United_States_military_casualties_in_the_War_in_Afghanistan#Casualties_by_month_and_year")
-section <- page %>% html_elements()
-tbls <- html_nodes(page, "table")
+# page <- read_html("https://en.wikipedia.org/wiki/United_States_military_casualties_in_the_War_in_Afghanistan#Casualties_by_month_and_year")
+# section <- page %>% html_elements()
+# tbls <- html_nodes(page, "table")
 
 
 afg <- read_xlsx("X:/OneDrive/02. Data/Military History/US Afghanistan War Deaths by Month.xlsx")
@@ -37,22 +38,23 @@ levels <- c("DEC", "NOV", "OCT", "SEP", "AUG", "JUL", "JUN", "MAY", "APR", "MAR"
 afghan_vis <- ggplot(afghan_war_table,aes(x=Year,y=Month, fill=Deaths)) +
   geom_tile(color = "white", width=0.9, height=0.9) +
   geom_label(label = afghan_war_table$Deaths, color = "white") +
-  theme_classic() +
+  theme_hc() +
   scale_fill_gradient(low="blue", high="red") +
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) +
-  labs(title = "US Deaths by Month - Afghanistan War (2001 - 2021?)", caption = "Source: Wikipedia") 
+  labs(title = "US Deaths - Afghanistan War (2001 - 20??)", 
+       subtitle = "Total US Fatalities by Month",
+       caption = "Source: Wikipedia") +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  theme(plot.title = element_text(hjust = 0.5, family = "serif")) +
+  theme(plot.subtitle = element_text(hjust = 0.5, family = "serif")) +
+  theme(legend.title = element_text(vjust = 0.85, hjust = 0.5, family = "serif")) +
+  theme(axis.title = element_text(hjust = 0.5, family = "serif")) +
+  theme(axis.text = element_text(hjust = 0.5, family = "serif"))
 
 afghan_vis
 
 
 
-ggplot(afghan_war_table, aes(Deaths, Month)) + geom_tile(colour = "white") + 
-  facet_grid(year(afghan_war_table$Year)~monthf) + 
-  scale_fill_gradient(low="red", high="green") + 
-  xlab("Week of Month") + ylab("") + 
-  ggtitle("Time-Series Calendar Heatmap: AMZN Stock Prices") + 
-  labs(fill = "Price") 
 
-
-CalendarHeat(afghan_war_table$Month, afghan_war_table$Deaths, 
-             ncolors = 25, color = "r2g", varname="US Afghanistan War Deaths")
+#CalendarHeat(afghan_war_table$Month, afghan_war_table$Deaths, 
+#             ncolors = 25, color = "r2g", varname="US Afghanistan War Deaths")
