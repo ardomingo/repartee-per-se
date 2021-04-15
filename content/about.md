@@ -11,7 +11,7 @@ title: Repartee, per se
 
 
 
-This blog is a collection of articles in the data journalism style across a range of topics, from baseball to politics to humor.  Most of these pieces include some aspect of data analysis to help illustrate how these methods can relate to real, everyday questions we might come across in our lives.
+This blog is a collection of short posts in the data journalism style across a range of topics, from baseball to politics to humor.  Most of these pieces include some aspect of data analysis to help illustrate how these methods can relate to real, everyday questions we might come across in our lives.
 
 FEATURED<br>
 These are a collection of more long-form journalism articles that provide a broader context of the piece and more in-depth analysis to enhance the story.  While posts on the homepage are quick reads that are generally shorter than 500 words, these articles can be upwards of 5,000 words and lace together a much larger narrative - but these are not a short read.
