@@ -1,7 +1,7 @@
 ---
 title: To Settle a Score?
 author: AR Domingo
-date: '2021-04-14'
+date: '2021-04-15'
 slug: to-settle-a-score
 categories: 
 - Politics
