@@ -150,6 +150,9 @@ college_anim <-
 animate(college_anim, renderer = magick_renderer(loop = TRUE), height = 600, width = 600,
         detail = 25)
 
+animate(college_anim, renderer = av_renderer(), height = 600, width = 800,
+        detail = 25)
+
 
 
 
@@ -208,6 +211,8 @@ gender_anim <-
 animate(gender_anim, renderer = gifski_renderer(), height = 600, width = 800,
         detail = 25)
 
+animate(gender_anim, renderer = av_renderer(), height = 600, width = 800,
+        detail = 25)
 
 animate(gender_anim, renderer = magick_renderer(loop = TRUE), height = 600, width = 800,
         detail = 25)
