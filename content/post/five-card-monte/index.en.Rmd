@@ -1,13 +1,12 @@
 ---
 title: Five-Card Monte?
 author: AR Domingo
-date: '2021-04-13'
+date: '2021-04-22'
 slug: five-card-monte
 categories:
   - Politics
 tags:
   - timevis
-draft: true
 ---
 
 
@@ -158,7 +157,7 @@ frameWidget(framed_timeline)
 </center>
 
 
-But it's even more rare to have just one president...this has happened only twice, for a total of about 22 months.
+But it's even more rare to have just one president...this has happened only twice, for a total of about 22 months.^[*Disregarding the years of George Washington's presidency, of course.*]
 
 It happened when Calvin Coolidge shed his mortal coil in January of 1933, leaving only the current president, Herbert Hoover, the sole living member of the Presidents Club.  But only two months later, he was joined by the newly inaugurated Franklin D Roosevelt.
 
@@ -166,5 +165,5 @@ It happened for a second, and much longer time, between when Lyndon B Johnson di
 </p>
 
 <br><br>
-Data set: [**Presidential Timeline**](https://github.com/ardomingo/repartee-per-se)
+Data Source: [**Presidential Timeline**](https://www.presidentsusa.net)
 <br>
