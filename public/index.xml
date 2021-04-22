@@ -6,7 +6,60 @@
     <description>Recent content on Repartee, per se</description>
     <generator>Hugo -- gohugo.io</generator>
     <copyright>Copyright © 2021, Andres Domingo; all rights reserved.</copyright>
-    <lastBuildDate>Thu, 15 Apr 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://repartee-per-se.netlify.app/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 22 Apr 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://repartee-per-se.netlify.app/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Five-Card Monte?</title>
+      <link>https://repartee-per-se.netlify.app/post/five-card-monte/</link>
+      <pubDate>Thu, 22 Apr 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://repartee-per-se.netlify.app/post/five-card-monte/</guid>
+      <description>
+        
+          
+&lt;script src=&#34;https://repartee-per-se.netlify.app/post/five-card-monte/index.en_files/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;https://repartee-per-se.netlify.app/post/five-card-monte/index.en_files/htmlwidgets/htmlwidgets.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;https://repartee-per-se.netlify.app/post/five-card-monte/index.en_files/pymjs/pym.v1.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;https://repartee-per-se.netlify.app/post/five-card-monte/index.en_files/widgetframe-binding/widgetframe.js&#34;&gt;&lt;/script&gt;
+
+
+&lt;center&gt;
+&lt;h3&gt;
+Four-of-a-kind won’t cut it
+&lt;/h3&gt;
+&lt;/center&gt;
+&lt;p&gt;We have six presidents. When Joseph Biden took the Oath of Office on January 20, 2021, the United States officially had one current president, and &lt;strong&gt;five living former&lt;/strong&gt; presidents (Donald Trump, Barack Obama, George W Bush, Bill Clinton, and Jimmy Carter). But having so many living presidents isn’t exactly rare - except for a short two-year gap between 2007 and 2009, we’ve had at least 5 presidents (the one current and four living former presidents) ever since George HW Bush took office in January of 1989. That’s 30 out of the last 32 years, and for about 5 of those years, we had 6 with us, just as we have now.&lt;/p&gt;
+&lt;p&gt;It’s not rare, since about 1989. It &lt;em&gt;was&lt;/em&gt; rare for the entire remaining history of the United States. In fact, it was rare to have five, including the current president. Only at one other time in American history prior to the fall of the Soviet Union did we have a total of six presidents alive, and one of them was Abraham Lincoln.&lt;/p&gt;
+&lt;p&gt;Between the short interval when Lincoln was inaugurated in March of 1861, and the time that former president John Tyler died at the age of 71 on January 18, 1862, was the last period during which the US saw &lt;em&gt;six&lt;/em&gt; presidents, prior to the 1990s. These were Lincoln, James Buchanan, Franklin Pierce, Millard Fillmore, Martin Van Buren, and the aforementioned Tyler.&lt;/p&gt;
+&lt;center&gt;
+&lt;font size=&#34;4&#34; style=&#34;color: indianred;&#34;&gt;&lt;strong&gt;A Timeline of the US Presidents (Inauguration to Death)&lt;/strong&gt;&lt;/font&gt;&lt;br&gt;&lt;br&gt;
+&lt;font size=&#34;2&#34; style=&#34;color: cornflowerblue;&#34;&gt;&lt;em&gt;Drag and zoom on timeline below to change focus&lt;/em&gt;&lt;/font&gt;
+&lt;/center&gt;
+&lt;div id=&#34;htmlwidget-1&#34; style=&#34;width:100%;height:600px;&#34; class=&#34;widgetframe html-widget&#34;&gt;&lt;/div&gt;
+&lt;script type=&#34;application/json&#34; data-for=&#34;htmlwidget-1&#34;&gt;{&#34;x&#34;:{&#34;url&#34;:&#34;index.en_files/figure-html//widgets/widget_timeline.html&#34;,&#34;options&#34;:{&#34;xdomain&#34;:&#34;*&#34;,&#34;allowfullscreen&#34;:false,&#34;lazyload&#34;:false}},&#34;evals&#34;:[],&#34;jsHooks&#34;:[]}&lt;/script&gt;
+&lt;p&gt;
+&lt;center&gt;
+&lt;h3&gt;
+But sometimes all you have is an Ace-[hole]
+&lt;/h3&gt;
+&lt;/center&gt;
+&lt;p&gt;But it’s even more rare to have just one president…this has happened only twice, for a total of about 22 months.&lt;a href=&#34;#fn1&#34; class=&#34;footnote-ref&#34; id=&#34;fnref1&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;It happened when Calvin Coolidge shed his mortal coil in January of 1933, leaving only the current president, Herbert Hoover, the sole living member of the Presidents Club. But only two months later, he was joined by the newly inaugurated Franklin D Roosevelt.&lt;/p&gt;
+It happened for a second, and much longer time, between when Lyndon B Johnson died in January 1973 and when Gerald Ford took office in August of 1974 following President Nixon’s resignation. It was particularly interesting this time, as the only president was the then-current president, the embattled Richard Nixon. Yes, it was Nixon alone, at the height of his hubris and scandal, facing imminent political and perhaps criminal catastrophe, who represented the Office of the Presidency of the United States.
+&lt;/p&gt;
+&lt;p&gt;&lt;br&gt;&lt;br&gt;
+Data Source: &lt;a href=&#34;https://www.presidentsusa.net&#34;&gt;&lt;strong&gt;Presidential Timeline&lt;/strong&gt;&lt;/a&gt;
+&lt;br&gt;&lt;/p&gt;
+&lt;div class=&#34;footnotes&#34;&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id=&#34;fn1&#34;&gt;&lt;p&gt;&lt;em&gt;Disregarding the years of George Washington’s presidency, of course.&lt;/em&gt;&lt;a href=&#34;#fnref1&#34; class=&#34;footnote-back&#34;&gt;↩︎&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+
+        
+      </description>
+    </item>
+    
     <item>
       <title>To Settle a Score?</title>
       <link>https://repartee-per-se.netlify.app/post/to-settle-a-score/</link>
