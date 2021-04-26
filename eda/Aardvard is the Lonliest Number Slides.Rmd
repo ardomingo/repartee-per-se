@@ -1,0 +1,153 @@
+---
+title: "MammalSlides"
+author: "AR Domingo"
+date: "4/25/2021"
+output: ioslides_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+
+<center>
+## Some of the smallest are the biggest
+</center>
+
+When it comes to shear number of differentiated species, the rodents take the cake and just about everything else.  
+
+```{r rodents, echo=FALSE, message=FALSE, warning=FALSE, fig.height=8, fig.width=10, fig.align='center'}
+
+library(tidyverse)
+library(waffle)
+library(RColorBrewer)
+library(wesanderson)
+library(hrbrthemes)
+library(formattable)
+
+#Load data set
+mdd <- read.csv("X:/OneDrive/02. Data/Environmental Data/Mammal Diversity Database/MDD/MDD/MDD_v1.4_6533species.csv")
+
+#Create table
+pivot_table_set <- 
+  mdd %>% 
+    group_by(order) %>%
+    summarize(n())
+
+#Rename columns
+colnames(pivot_table_set) <- c("Order", "Number of Species")
+
+#Arrange descending and add percent calculation
+pivot_table_set <- 
+  pivot_table_set %>% 
+    arrange(desc(`Number of Species`)) %>% 
+    mutate(Percent = `Number of Species`/sum(`Number of Species`))
+
+#Create formattable object
+order_table <- 
+  formattable(pivot_table_set,
+            align = c("c", rep("r", NCOL(pivot_table_set) -1)),
+            list(
+              `Number of Species` = color_bar("lightblue"),
+              Percent = percent,
+              Percent = color_tile("transparent", "skyblue")
+            ))
+
+
+
+#ALL MAMMALS
+#Set main waffle dataframe
+mdd %>%
+  count(order) %>%
+  ggplot(aes(fill = order, values = n)) +
+  expand_limits(x=c(0,0), y=c(0,0)) +
+  coord_equal() +
+  labs(fill = NULL, colour = NULL) +
+  theme_ipsum_rc(grid="") +
+  theme_enhance_waffle() -> waf
+
+#Create color set for all
+colorset_all <- 
+  c("#7FC97F", "#BEAED4", "#FDC086", "#7FFF00", "#BF5B17",
+    "#666666", "#1B9E77", "#D95F02", "#7570B3", "#E7298A",
+    "#66A61E", "#E6AB02", "#A6761D", "#A6CEE3", "#1F78B4",
+    "#B3E2CD", "#FDDAEC", "#E41A1C", "#80B1D3", "#B3DE69",
+    "#F781BF", "#1A1AFF", "#FB8072", "#A65628", "#CCEBC5",
+    "#999999", "#F0027F")
+
+#MAMMALS
+mammalia_waffle <- 
+  waf +
+    geom_waffle(n_rows = 40, size = .5, colour = "white", flip = FALSE) +
+    scale_fill_manual(values = colorset_all, length(order)) +
+    theme(legend.title = element_blank()) +
+    theme(legend.position="bottom")+
+    theme(legend.text=element_text(size=7)) +
+    labs(title = "MAMMALIA", caption = "Source: ASM Mammal Diversity Database") +
+    theme(plot.title = element_text(hjust = 0.5))
+
+
+
+
+
+#RODENTIA
+colorset_rodentia <- 
+  c(alpha("#7FC97F", .25), alpha("#BEAED4", .25), alpha("#FDC086", .25), alpha("#7FFF00", .25), alpha("#BF5B17", .25), 
+    alpha("#666666", .25), alpha("#1B9E77", .25), alpha("#D95F02", .25), alpha("#7570B3", .25), alpha("#E7298A", .25),
+    alpha("#66A61E", .25), alpha("#E6AB02", .25), alpha("#A6761D", .25), alpha("#A6CEE3", .25), alpha("#1F78B4", .25),
+    alpha("#B3E2CD", .25), alpha("#FDDAEC", .25), alpha("#E41A1C", .25), alpha("#80B1D3", .25), alpha("#B3DE69", .25),
+    alpha("#F781BF", .25), alpha("#1A1AFF", .25), alpha("#FB8072", .25), "#A65628",  alpha("#CCEBC5", .25),
+    alpha("#999999", .25), alpha("#F0027F", .25))
+
+
+rodentia_waffle <- 
+  waf +
+  geom_waffle(n_rows = 40, size = .5, colour = "white", flip = FALSE) +
+  scale_fill_manual(values = colorset_rodentia, length(order)) +
+  theme(legend.title = element_blank()) +
+  theme(legend.position="bottom")+
+  theme(legend.text=element_text(size=7)) +
+  labs(title = "THE RODENTS", caption = "Source: ASM Mammal Diversity Database") +
+  theme(plot.title = element_text(hjust = 0.5))
+
+rodentia_waffle
+
+
+```
+
+
+<center>
+## For the only flying ones, there's quite a variety
+</center>
+
+
+Chiroptera, the virtually omnipresent bat, gained more infamy following the events of 2020, but come in the second largest variety of all mammals - and are the only mammals that can fly.  
+
+
+```{r bats, echo=FALSE, message=FALSE, warning=FALSE, fig.height=8, fig.width=10, fig.align='center'}
+
+#CHIROPTERA
+colorset_chiroptera <- 
+  c(alpha("#7FC97F", .25), alpha("#BEAED4", .25), alpha("#FDC086", .25), "#7FFF00", alpha("#BF5B17", .25), 
+    alpha("#666666", .25), alpha("#1B9E77", .25), alpha("#D95F02", .25), alpha("#7570B3", .25), alpha("#E7298A", .25),
+    alpha("#66A61E", .25), alpha("#E6AB02", .25), alpha("#A6761D", .25), alpha("#A6CEE3", .25), alpha("#1F78B4", .25),
+    alpha("#B3E2CD", .25), alpha("#FDDAEC", .25), alpha("#E41A1C", .25), alpha("#80B1D3", .25), alpha("#B3DE69", .25),
+    alpha("#F781BF", .25), alpha("#1A1AFF", .25), alpha("#FB8072", .25), alpha("#A65628", .25),  alpha("#CCEBC5", .25),
+    alpha("#999999", .25), alpha("#F0027F", .25))
+
+
+chiroptera_waffle <- 
+  waf +
+  geom_waffle(n_rows = 40, size = .5, colour = "white", flip = FALSE) +
+  scale_fill_manual(values = colorset_chiroptera, length(order)) +
+  theme(legend.title = element_blank()) +
+  theme(legend.position="bottom") +
+  theme(legend.text=element_text(size=7)) +
+  labs(title = "THE BATS", caption = "Source: ASM Mammal Diversity Database") +
+  theme(plot.title = element_text(hjust = 0.5))
+
+chiroptera_waffle
+
+
+
+```
