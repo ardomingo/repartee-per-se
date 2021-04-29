@@ -1,13 +1,12 @@
 ---
 title: Tubulidentata is the Loneliest Number...
 author: AR Domingo
-date: '2021-04-25'
+date: '2021-04-29'
 slug: [tubulidentata-is-the-loneliest-number]
 categories:
   - Science
 tags:
   - waffle
-draft: true
 ---
 
 <center>
@@ -294,8 +293,10 @@ tubulidentata_waffle
 
 ```
 
+<br>
+<center><span style="color: red;"><h6>*Orycteropus afer* - Aardvark</h6></span></center>
 
-<center><img src="https://upload.wikimedia.org/wikipedia/commons/3/35/Orycteropus_afer_stuffed.jpg"></center>
+<center><img src="https://upload.wikimedia.org/wikipedia/commons/3/35/Orycteropus_afer_stuffed.jpg" width="960"></center>
 
 Aside from rodents and bats, no other mammalian order is represented by more than 10% of all mammalian species.  Indeed, 20 of the 27 orders contain less than even two percent (2%) of the variety in mammals.  In fact, 17 of those orders contain species that total less than one percent (1%).  And then there, all the way to the bottom, is the tubulidentata - flying solo, alone and free.
 
