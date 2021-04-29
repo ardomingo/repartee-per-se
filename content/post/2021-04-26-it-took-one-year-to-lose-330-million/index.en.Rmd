@@ -1,0 +1,58 @@
+---
+title: It Took One Year to Lose 330 Million
+author: AR Domingo
+date: '2021-04-26'
+slug: it-took-one-year-to-lose-330-million
+categories:
+  - Various
+tags:
+  - Events
+draft: true
+---
+
+
+<center>
+<h3>*No Man is an Island*</h3>
+</center>
+
+<center><font size=2>
+No man is an island entire of itself; every man<br> 
+is a piece of the continent, a part of the main; <br>
+if a clod be washed away by the sea, Europe<br>
+is the less, as well as if a promontory were, as<br>
+well as any manner of thy friends or of thine<br>
+own were; any man's death diminishes me,<br>
+because I am involved in mankind.<br>
+And therefore never send to know for whom<br>
+the bell tolls; it tolls for thee.<br>
+</font></center><br>
+
+<center><font size=1>
+MEDITATION XVII<br>
+*Devotions upon Emergent Occasions*<br>
+**John Donne**<br>
+</font></center><br>
+
+
+Treatment: This should be a featured piece that examines the number of years lost (in terms of the ~year decrease in average life expectancy) by everyone.  First looking at it as a whole, as in - one year from each living American adds up to 330 million years, from the deaths of 565,000+ of us.  But how has it affected some of the cities of America?  How many years have the big cities lost, the hardest hit cities, red cities, blue cities?  How can I frame this to show more of the human toll of this pandemic?
+
+Graph of "Years Lost by City/Metro" - would probably best represented by 'cost per year' of how many deaths in that city leading to city population times decrease in avg life expectancy.
+
+
+
+
+```{r setup, message = FALSE, warning=FALSE,include=FALSE,echo=FALSE}
+
+
+library(tidyverse)
+
+
+
+
+url <- "https://www.cdc.gov/nchs/data/vsrr/VSRR10-508.pdf"
+
+
+
+
+```
+
