@@ -19,7 +19,7 @@ The taxonomic^[It can be correctly noted that our classification system is not d
 There are 27 different orders in *Class Mammalia*, currently represented by 6,533 individual species.  Let's take a short tour of a few notable ones.  
 
 <center>
-<span style="color: red;"><font size="2">*Each square on the charts that follow represents one species in that order*</font></span>
+<span style="color: red;"><font size="2">*Each square on the charts that follow represents one species*</font></span>
 </center>
 
 
