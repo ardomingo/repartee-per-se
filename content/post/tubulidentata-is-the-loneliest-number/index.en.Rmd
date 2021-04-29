@@ -1,5 +1,5 @@
 ---
-title: TUBULIDENTATA is the Loneliest Number...
+title: Tubulidentata is the Loneliest Number...
 author: AR Domingo
 date: '2021-04-25'
 slug: [tubulidentata-is-the-loneliest-number]
@@ -19,7 +19,7 @@ The taxonomic^[It can be correctly noted that our classification system is not d
 There are 27 different orders in *Class Mammalia*, currently represented by 6,533 individual species.  Let's take a short tour of a few notable ones.  
 
 <center>
-<font size="2">*Each square on the charts that follow represent one species in that order*</font>
+<span style="color: red;"><font size="2">*Each square on the charts that follow represents one species in that order*</font></span>
 </center>
 
 
@@ -76,7 +76,7 @@ mdd %>%
 
 #Create color set for all
 colorset_all <- 
-  c("#7FC97F", "#BEAED4", "#FDC086", "#7FFF00", "#BF5B17",
+  c("#7FC97F", "#BEAED4", "#FDC086", "#00FA9A", "#BF5B17",
     "#666666", "#1B9E77", "#D95F02", "#7570B3", "#E7298A",
     "#66A61E", "#E6AB02", "#A6761D", "#A6CEE3", "#1F78B4",
     "#B3E2CD", "#FDDAEC", "#E41A1C", "#80B1D3", "#B3DE69",
@@ -114,7 +114,7 @@ When it comes to sheer number of differentiated species, the rodents take the ca
 
 #RODENTIA
 colorset_rodentia <- 
-  c(alpha("#7FC97F", .25), alpha("#BEAED4", .25), alpha("#FDC086", .25), alpha("#7FFF00", .25), alpha("#BF5B17", .25), 
+  c(alpha("#7FC97F", .25), alpha("#BEAED4", .25), alpha("#FDC086", .25), alpha("#00FA9A", .25), alpha("#BF5B17", .25), 
     alpha("#666666", .25), alpha("#1B9E77", .25), alpha("#D95F02", .25), alpha("#7570B3", .25), alpha("#E7298A", .25),
     alpha("#66A61E", .25), alpha("#E6AB02", .25), alpha("#A6761D", .25), alpha("#A6CEE3", .25), alpha("#1F78B4", .25),
     alpha("#B3E2CD", .25), alpha("#FDDAEC", .25), alpha("#E41A1C", .25), alpha("#80B1D3", .25), alpha("#B3DE69", .25),
@@ -153,7 +153,7 @@ Chiroptera, the virtually omnipresent bat, gained more infamy following the even
 
 #CHIROPTERA
 colorset_chiroptera <- 
-  c(alpha("#7FC97F", .25), alpha("#BEAED4", .25), alpha("#FDC086", .25), "#7FFF00", alpha("#BF5B17", .25), 
+  c(alpha("#7FC97F", .25), alpha("#BEAED4", .25), alpha("#FDC086", .25), "#00FA9A", alpha("#BF5B17", .25), 
     alpha("#666666", .25), alpha("#1B9E77", .25), alpha("#D95F02", .25), alpha("#7570B3", .25), alpha("#E7298A", .25),
     alpha("#66A61E", .25), alpha("#E6AB02", .25), alpha("#A6761D", .25), alpha("#A6CEE3", .25), alpha("#1F78B4", .25),
     alpha("#B3E2CD", .25), alpha("#FDDAEC", .25), alpha("#E41A1C", .25), alpha("#80B1D3", .25), alpha("#B3DE69", .25),
@@ -193,7 +193,7 @@ Then there are the primates.  Modern humans (as well as not so modern ones), chi
 
 #PRIMATES
 colorset_primates <- 
-  c(alpha("#7FC97F", .25), alpha("#BEAED4", .25), alpha("#FDC086", .25), alpha("#7FFF00", .25), alpha("#BF5B17", .25), 
+  c(alpha("#7FC97F", .25), alpha("#BEAED4", .25), alpha("#FDC086", .25), alpha("#00FA9A", .25), alpha("#BF5B17", .25), 
     alpha("#666666", .25), alpha("#1B9E77", .25), alpha("#D95F02", .25), alpha("#7570B3", .25), alpha("#E7298A", .25),
     alpha("#66A61E", .25), alpha("#E6AB02", .25), alpha("#A6761D", .25), alpha("#A6CEE3", .25), alpha("#1F78B4", .25),
     alpha("#B3E2CD", .25), alpha("#FDDAEC", .25), alpha("#E41A1C", .25), alpha("#80B1D3", .25), alpha("#B3DE69", .25),
@@ -222,7 +222,7 @@ primates_waffle
 <h3>Extreme monotremes</h3>
 </center>
 
-The monotremes deserve a closer look by virtue of their extremely strange characteristics for mammals.  While they are the only mammals that do not carry their offspring to a live birth but, rather, lay an egg, they still provide nutrition to their young via mammary glands (though they lack nipples like other mammals).  These odd creatures are a small group, with only five extant species - four echidnas and the delightfully strange platypus.  They're noted in dark blue below.
+The monotremes deserve a closer look by virtue of their extremely strange characteristics for mammals.  While they are the only mammals that do not carry their offspring to a live birth but, rather, lay an egg, they still provide nutrition to their young via mammary glands (though they lack nipples like other mammals).  These odd creatures are a small group, with only five extant species - four echidnas, and the delightfully peculiar platypus.  They're noted in dark blue below.
 
 
 
@@ -231,7 +231,7 @@ The monotremes deserve a closer look by virtue of their extremely strange charac
 
 #MONOTREMES
 colorset_monotremata <- 
-  c(alpha("#7FC97F", .25), alpha("#BEAED4", .25), alpha("#FDC086", .25), alpha("#7FFF00", .25), alpha("#BF5B17", .25), 
+  c(alpha("#7FC97F", .25), alpha("#BEAED4", .25), alpha("#FDC086", .25), alpha("#00FA9A", .25), alpha("#BF5B17", .25), 
     alpha("#666666", .25), alpha("#1B9E77", .25), alpha("#D95F02", .25), alpha("#7570B3", .25), alpha("#E7298A", .25),
     alpha("#66A61E", .25), alpha("#E6AB02", .25), alpha("#A6761D", .25), alpha("#A6CEE3", .25), "#1F78B4",
     alpha("#B3E2CD", .25), alpha("#FDDAEC", .25), alpha("#E41A1C", .25), alpha("#80B1D3", .25), alpha("#B3DE69", .25),
@@ -262,7 +262,7 @@ monotremata_waffle
 </center>
 
 
-But all alone...yes, that single, solitary magenta point, all the way to the right, is the bemusing aardvark.  Through cruel circumstance and perhaps poor design, *Orycteropodidae (Aardvark Family)* is the only remaining extant member of the *Order Tubulidentata*.  So for all intents and purposes, all three of these keyboard workouts mentioned here are the same thing...what is commonly known as the aardvark.  And it is the only mammal of its kind in our taxonomy.  So this tiny data point below is a bit of a rarity.  But luckily, there's a lot of them.  They are of least concern as deemed by the IUCN^["https://www.iucn.org/"], so they're pretty robust as a species.
+But all alone...yes, that single, solitary magenta point, all the way to the right, is the bemusing aardvark.  Through cruel circumstance and perhaps poor design, *Orycteropodidae (Aardvark Family)* is the only remaining extant member of the *Order Tubulidentata*.  So for all intents and purposes, all three of these keyboard workouts mentioned here are the same thing...what is commonly known as the aardvark.  And it is the only mammal of its kind in our taxonomy.  So this tiny data point below is a bit of a rarity.  But luckily, there's a lot of them.  They are of least concern as deemed by the IUCN^[https://www.iucn.org/], so they're pretty robust as a species.
 
 
 ```{r aardvarks, echo=FALSE, message=FALSE, warning=FALSE, fig.height=6, fig.width=10, fig.align='center',cache=TRUE}
@@ -270,7 +270,7 @@ But all alone...yes, that single, solitary magenta point, all the way to the rig
 
 #TUBULIDENTATA
 colorset_tubulidentata <- 
-  c(alpha("#7FC97F", .25), alpha("#BEAED4", .25), alpha("#FDC086", .25), alpha("#7FFF00", .25), alpha("#BF5B17", .25), 
+  c(alpha("#7FC97F", .25), alpha("#BEAED4", .25), alpha("#FDC086", .25), alpha("#00FA9A", .25), alpha("#BF5B17", .25), 
     alpha("#666666", .25), alpha("#1B9E77", .25), alpha("#D95F02", .25), alpha("#7570B3", .25), alpha("#E7298A", .25),
     alpha("#66A61E", .25), alpha("#E6AB02", .25), alpha("#A6761D", .25), alpha("#A6CEE3", .25), alpha("#1F78B4", .25),
     alpha("#B3E2CD", .25), alpha("#FDDAEC", .25), alpha("#E41A1C", .25), alpha("#80B1D3", .25), alpha("#B3DE69", .25),
@@ -297,7 +297,7 @@ tubulidentata_waffle
 
 <center><img src="https://upload.wikimedia.org/wikipedia/commons/3/35/Orycteropus_afer_stuffed.jpg"></center>
 
-Aside from rodents and bats, no other mammalian order is represented by more than 10% of all mammalian species.  Indeed, 20 of the 27 orders contain less than even two percent (2%) of the variety in mammals.  In fact, 17 of those orders contain species that total less than one percent.  And then there, all the way to the bottom, is the tubulidentata - flying solo, alone and free.
+Aside from rodents and bats, no other mammalian order is represented by more than 10% of all mammalian species.  Indeed, 20 of the 27 orders contain less than even two percent (2%) of the variety in mammals.  In fact, 17 of those orders contain species that total less than one percent (1%).  And then there, all the way to the bottom, is the tubulidentata - flying solo, alone and free.
 
 
 ```{r table, echo=FALSE, message=FALSE, warning=FALSE, fig.height=8, fig.width=4, fig.align='center'}
@@ -310,5 +310,5 @@ order_table
 
 Data Source: [ASM Mammal Diversity Database](https://www.mammaldiversity.org/)
 
-Photo Source: "https://upload.wikimedia.org/wikipedia/commons/3/35/Orycteropus_afer_stuffed.jpg"
+Photo Source: https://upload.wikimedia.org/wikipedia/commons/3/35/Orycteropus_afer_stuffed.jpg
 
