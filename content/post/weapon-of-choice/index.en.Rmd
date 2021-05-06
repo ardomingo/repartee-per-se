@@ -1,14 +1,13 @@
 ---
 title: Weapon of Choice
 author: AR Domingo
-date: '2021-05-02'
+date: '2021-05-05'
 slug: weapon-of-choice
 categories:
   - Sports
 tags:
   - Baseball
   - MLB
-draft: true
 ---
 
 
