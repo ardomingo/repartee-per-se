@@ -3,18 +3,30 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://repartee-per-se.netlify.app/</loc>
-    <lastmod>2021-04-29T00:00:00+00:00</lastmod>
+    <lastmod>2021-05-05T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://repartee-per-se.netlify.app/tags/baseball/</loc>
+    <lastmod>2021-05-05T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://repartee-per-se.netlify.app/categories/</loc>
-    <lastmod>2021-04-29T00:00:00+00:00</lastmod>
+    <lastmod>2021-05-05T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://repartee-per-se.netlify.app/tags/mlb/</loc>
+    <lastmod>2021-05-05T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://repartee-per-se.netlify.app/post/</loc>
-    <lastmod>2021-04-29T00:00:00+00:00</lastmod>
+    <lastmod>2021-05-05T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://repartee-per-se.netlify.app/categories/science/</loc>
-    <lastmod>2021-04-29T00:00:00+00:00</lastmod>
+    <loc>https://repartee-per-se.netlify.app/categories/sports/</loc>
+    <lastmod>2021-05-05T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://repartee-per-se.netlify.app/tags/</loc>
+    <lastmod>2021-05-05T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://repartee-per-se.netlify.app/post/weapon-of-choice/</loc>
+    <lastmod>2021-05-05T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://repartee-per-se.netlify.app/categories/science/</loc>
     <lastmod>2021-04-29T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://repartee-per-se.netlify.app/post/tubulidentata-is-the-loneliest-number/</loc>
@@ -50,19 +62,10 @@
     <loc>https://repartee-per-se.netlify.app/post/it-really-might-be-a-goat/</loc>
     <lastmod>2021-04-10T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://repartee-per-se.netlify.app/categories/sports/</loc>
-    <lastmod>2021-04-10T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://repartee-per-se.netlify.app/tags/baseball/</loc>
-    <lastmod>2021-04-08T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://repartee-per-se.netlify.app/tags/ggplot2/</loc>
     <lastmod>2021-04-08T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://repartee-per-se.netlify.app/tags/kableextra/</loc>
-    <lastmod>2021-04-08T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://repartee-per-se.netlify.app/tags/mlb/</loc>
     <lastmod>2021-04-08T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://repartee-per-se.netlify.app/post/what-can-the-1st-time-through-the-rotation-tell-us-about-how-2021-will-turn-out/</loc>

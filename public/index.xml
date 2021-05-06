@@ -6,7 +6,93 @@
     <description>Recent content on Repartee, per se</description>
     <generator>Hugo -- gohugo.io</generator>
     <copyright>Copyright © 2021, Andres Domingo; all rights reserved.</copyright>
-    <lastBuildDate>Thu, 29 Apr 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://repartee-per-se.netlify.app/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 05 May 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://repartee-per-se.netlify.app/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Weapon of Choice</title>
+      <link>https://repartee-per-se.netlify.app/post/weapon-of-choice/</link>
+      <pubDate>Wed, 05 May 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://repartee-per-se.netlify.app/post/weapon-of-choice/</guid>
+      <description>
+        
+          
+&lt;script src=&#34;https://repartee-per-se.netlify.app/post/weapon-of-choice/index.en_files/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+
+
+&lt;center&gt;
+&lt;h3&gt;
+The Top 10 Strikeout Leaders
+&lt;/h3&gt;
+&lt;/center&gt;
+&lt;p&gt;The April 2021 MLB Season is in the rearview, and the league leaders in strikeouts are as follows&lt;a href=&#34;#fn1&#34; class=&#34;footnote-ref&#34; id=&#34;fnref1&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Bieber, Shane (68)&lt;br /&gt;
+&lt;/li&gt;
+&lt;li&gt;Cole, Gerrit (62)&lt;br /&gt;
+&lt;/li&gt;
+&lt;li&gt;deGrom, Jacob (59)&lt;br /&gt;
+&lt;/li&gt;
+&lt;li&gt;Glasnow, Tyler (56)&lt;br /&gt;
+&lt;/li&gt;
+&lt;li&gt;Bauer, Trevor (51)&lt;br /&gt;
+&lt;/li&gt;
+&lt;li&gt;Darvish, Yu (49)&lt;br /&gt;
+&lt;/li&gt;
+&lt;li&gt;Burnes, Corbin (49)&lt;br /&gt;
+&lt;/li&gt;
+&lt;li&gt;Peralta, Freddy (45)&lt;br /&gt;
+&lt;/li&gt;
+&lt;li&gt;Wheeler, Zack (41)&lt;br /&gt;
+&lt;/li&gt;
+&lt;li&gt;Musgrove, Joe (41)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;By taking a closer look at their strikeouts, we can see &lt;strong&gt;how&lt;/strong&gt; each of them tend to accomplish their MLB-leading totals. Most pitchers have at least one &lt;strong&gt;out&lt;/strong&gt; pitch, but plotting thier performances allows us to see thier favored pitches at a glance.&lt;/p&gt;
+&lt;center&gt;
+&lt;h3&gt;
+The Arsenal
+&lt;/h3&gt;
+&lt;/center&gt;
+&lt;p&gt;The top 10 pitchers in strikeouts can be broken into three categories provided their strikeout data. Essentially, those who rely on one pitch, those who rely on two pitches, and those who can burn hitters with three or more different pitches.&lt;/p&gt;
+&lt;center&gt;
+&lt;img src=&#34;https://repartee-per-se.netlify.app/post/weapon-of-choice/index.en_files/figure-html/top10%20radials-1.png&#34; width=&#34;675.12&#34; /&gt;
+&lt;/center&gt;
+&lt;p&gt;It’s pretty clear that in the first month of the season, Corbin Burnes and Joe Musgrove basically get their K’s from primarily a single pitch, the cutter and the slider, respectively. Indeed, they both get about 3 times as many strikeouts with their preferred hurl than they do their next most utilized pitch.&lt;/p&gt;
+&lt;p&gt;The more typical pitcher on the leader list gets some mileage out of a second pitch, nearly as consistently as their best. deGrom, Glasnow, Peralta, and Wheeler fall into this category. Glasnow uses a 4-seamer and a curve, but the other three use a 4-seam fastball as their primary out pitch, and their second choice is the slide piece.&lt;/p&gt;
+&lt;p&gt;Then there’s Shane Bieber and Gerrit Cole; each capitalize on a &lt;em&gt;third&lt;/em&gt; pitch for the punch out. For Bieber, the knuckle curve is arguably his best pitch, but he can get a whiff with his 4-seamer just as often. He complements this with another breaking ball, the slider. Cole also has a slider, which he uses to get most of his K’s. He follows this with a 4-seam fastball, then a consistent peppering of the changeup for good measure.&lt;/p&gt;
+&lt;p&gt;And then the special case - Trevor Bauer and Yu Darvish both show that they can really get strikeouts reliably with &lt;strong&gt;four&lt;/strong&gt; different pitchers. Bauer’s primary choice is the old standby, the 4-seam fastball. But he also spreads the rest of his K’s among a slider, a knuckle curve, and a cutter for flair.&lt;/p&gt;
+&lt;p&gt;Darvish, on the other hand, relies on the slider for most of his fans. Then he uses a 4-seamer and a knuckle curve nearly as much. But his fourth pitch, the sinker, is used for strikeouts only by him among the pitchers on the leaderboard. None of the other nine use it consistently for strikeouts, or at all, really.&lt;/p&gt;
+&lt;p&gt;But Yu Darvish has something a little extra going on so far this year. He also uses &lt;strong&gt;two&lt;/strong&gt; other pitchers for strikeouts - the cutter and the splitter - each for about 10% of his K’s. That’s not an insignificant proportion. So arguably, Darvish is flirting with an arsenal of &lt;strong&gt;six&lt;/strong&gt; different pitches he can make use of for a strikeout. Time will tell how this bit of magic shapes up.&lt;/p&gt;
+&lt;center&gt;
+&lt;h3&gt;
+The Target
+&lt;/h3&gt;
+&lt;/center&gt;
+&lt;p&gt;As is evident in their locations, those pitchers who make use of the 4-seam fastball make sure to leverage it for all it’s got with the high heat. Most of these pitches stay up in the zone, or even make the batter chase a high, hard one.&lt;/p&gt;
+&lt;center&gt;
+&lt;img src=&#34;https://repartee-per-se.netlify.app/post/weapon-of-choice/index.en_files/figure-html/top10%20location-1.png&#34; width=&#34;865.92&#34; /&gt;
+&lt;/center&gt;
+&lt;p&gt;Tyler Glasnow’s curve just drops off the table, and some of them end up in the dirt with the hitter fooled out ahead. He also keeps his strikeouts “in a lane” more than his colleagues on the leaderboard; the majority of his K’s come right near the center of the plate, at whatever elevation.&lt;/p&gt;
+&lt;p&gt;Several other tendencies can be seen in the plotted data. The slider is key for Musgrove, and you can see it tend to tail down and away from the right-handed batter - these charts are from the catcher’s perspective. The other pitcher in the top 10 who relies on mostly just one pitch for the punch out, Corbin Burnes, locates his cutter middle of the zone or higher. Gerrit Cole and, to a lesser degree, Jacob deGrom, tend to keep their changeups in a pretty tight configuration when they throw it for the out.&lt;/p&gt;
+&lt;p&gt;But back to Yu Darvish once again - his strikeout locations are a chaotic brilliance that doesn’t seem to follow any pattern, and sometimes don’t even act as one can normally intuit a pitch to act (e.g. most of his sinkers for strikeouts are up in the zone rather than down, as a sinker would tend to be).&lt;/p&gt;
+&lt;p&gt;Once again, Darvish has something interesting in the works here. And once again, the season is going to have to well, season, a bit before his performance winds up showing its true chaotic brilliance, or just chaos.
+&lt;br&gt;&lt;br&gt;
+&lt;span style=&#34;font-size:13px&#34;&gt;
+AUTHOR’S NOTE&lt;br&gt;
+This is a perfect example of data analysis at work - I haven’t seen most of these pitchers actually pitch very much this season, even in highlights. I can look at any leader board on the web to know who the strikeout leaders are, and I can look at their stat lines and box scores to get clues to what they’ve done. But I can know more about what pitches were thrown, and where they were located, by drilling down to some granular levels of data than I could ever retain and rely on from memory or experience. I’ve seen Yu Darvish pitch about three innings this year…so I would have no idea he was working on something really interesting without looking closer. I can guarantee I’m going to make an effort to watch him pitch more than a few more innings this year.
+&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;br&gt;
+DATA SOURCE: &lt;a href=&#34;https://baseballsavant.mlb.com/&#34;&gt;MLB Statcast Data&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&#34;footnotes&#34;&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id=&#34;fn1&#34;&gt;&lt;p&gt;Includes games played April 1, 2021 through April 30, 2021&lt;a href=&#34;#fnref1&#34; class=&#34;footnote-back&#34;&gt;↩︎&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+
+        
+      </description>
+    </item>
+    
     <item>
       <title>Tubulidentata is the Loneliest Number...</title>
       <link>https://repartee-per-se.netlify.app/post/tubulidentata-is-the-loneliest-number/</link>
