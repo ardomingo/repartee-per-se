@@ -34,6 +34,9 @@ MEDITATION XVII<br>
 </font></center><br>
 
 
+
+Between 2020 and 2021, we lost 330 million years.
+
 Treatment: This should be a featured piece that examines the number of years lost (in terms of the ~year decrease in average life expectancy) by everyone.  First looking at it as a whole, as in - one year from each living American adds up to 330 million years, from the deaths of 565,000+ of us.  But how has it affected some of the cities of America?  How many years have the big cities lost, the hardest hit cities, red cities, blue cities?  How can I frame this to show more of the human toll of this pandemic?
 
 Graph of "Years Lost by City/Metro" - would probably best represented by 'cost per year' of how many deaths in that city leading to city population times decrease in avg life expectancy.
