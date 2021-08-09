@@ -50,7 +50,7 @@ NYT_Cnty <- read.csv("https://raw.githubusercontent.com/nytimes/covid-19-data/ma
 ####################################################
 #GET ALL CA ZIP CODES
 #CA Zip Codes
-#CAZ <- "X:/OneDrive/02. Data/Geographic Data/US Zip Code Shapefiles/CA/acs2019_5yr_B01003_86000US91916.zip"
+CAZ <- "X:/OneDrive/02. Data/Geographic Data/US Zip Code Shapefiles/CA/acs2019_5yr_B01003_86000US91916.zip"
 
 options(tigris_use_cache = TRUE)
 
