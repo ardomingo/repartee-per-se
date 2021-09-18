@@ -6,6 +6,7 @@ slug: free-will-and-fair-will
 categories:
   - Philosophy
 tags: []
+draft: false
 ---
 
 
