@@ -63,7 +63,7 @@ state_table <-
 
 
 
-pops_set <- paste(sep = "<br/>", geo$City, "<br>", 
+pops_set <- paste(sep = " | ", geo$City, 
                   geo$DateOpened, 
                   geo$addresses)
 
@@ -124,6 +124,9 @@ map
 
   
   
+  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
+  
+  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
   
   
   
