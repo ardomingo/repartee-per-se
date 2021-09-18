@@ -5,12 +5,13 @@ library(ggmap)
 library(stringr)
 library(leaflet)
 library(gganimate)
+library(htmltools)
 
 #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
 
 #Load df (Source: https://www.lasvegas360.com/3428/in-n-out-burger-locations-and-store-numbers/)
 in_n_out <- 
-  read.csv("X:/OneDrive/02. Data/Geographic Data/Restauraunts, Hospitality, Entertainment/In N Out Location History.csv")
+  read.csv("https://raw.githubusercontent.com/ardomingo/repartee-per-se/main/eda/EDA%20Data%20FIles/In%20N%20Out%20Location%20History.csv")
 
 key = "AIzaSyAfWDmvI2nUHBqvnGXt97cIZ1l40R93Me8"
 register_google(key = "AIzaSyAfWDmvI2nUHBqvnGXt97cIZ1l40R93Me8")
@@ -60,8 +61,20 @@ state_table <-
   geo %>% group_by(State) %>% 
   summarise(Total = n())
 
+
+
+pops_set <- paste(sep = "<br/>", geo$City, "<br>", 
+                  geo$DateOpened, 
+                  geo$addresses)
+
+
 leaflet(geo) %>% addTiles() %>% 
-  addMarkers(lat = geo$lat, lng = geo$lon) 
+  addMarkers(lat = geo$lat, lng = geo$lon) %>% 
+  addMarkers(popup = ~pops_set, label = ~htmlEscape(pops_set))
+
+
+
+
 
 
 leaflet(geo) %>% addTiles() %>% 
