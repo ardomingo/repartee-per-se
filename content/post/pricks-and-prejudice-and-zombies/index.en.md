@@ -6,8 +6,10 @@ slug: [pricks-and-prejudice-and-zombies]
 categories:
   - Various
 tags: []
-
+draft: false
 ---
+
+
 
 Finally got my first prick yesterday...at the moment, really just feels like I was punched in the arm by a small child.
 I am unabashedly one of those people who was visibly elated by the chance to get this modern medical marvel.  While I've always been one to believe that you discount the power of prayer at your own risk, but this one - this is a testament to human achievement.  Despite whatever variety of horrible beings we are capable of being, we have an ability to solve problems on a scale that no species on Earth has ever had.
