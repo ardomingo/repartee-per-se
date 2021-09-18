@@ -9,4 +9,4 @@ usethis::create_github_token()
 ## in case usethis version < 2.0.0: usethis::browse_github_token() (or even better: update usethis!)
 
 ## set personal access token:
-credentials::set_github_pat("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")
+credentials::set_github_pat("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")

@@ -6,7 +6,7 @@ library(stringr)
 library(leaflet)
 library(gganimate)
 
-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
+#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
 
 #Load df (Source: https://www.lasvegas360.com/3428/in-n-out-burger-locations-and-store-numbers/)
 in_n_out <- 
