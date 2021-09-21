@@ -1,0 +1,79 @@
+---
+title: The Elusive Exclusive 500/3000
+author: 'AR Domingo'
+date: '2021-09-20'
+slug: the-elusive-500-3000
+categories:
+  - Sports
+tags:
+  - MLB
+  - Baseball
+---
+
+
+On August 22, 2021, Miguel Cabrera of the Detroit Tigers became the 28th player in MLB history to record 500 career home runs.  Twenty-eight - out of tens of thousands to have played in the MLB.  And when the season began, he had an historic opportunity to also reach the career milestone of 3,000 hits...it was a big task, but within the realm of possibility.  In fact, no other player in the history of the MLB has ever reached **both** those milestones in a single season.
+
+History may have to wait a bit longer.  While Cabrera has had a great season, he has just never quite gotten on the pace needed to reach 134 hits this season, the deficit he needs to erase to reach the promised land.  No doubt he has closed the gap since May and June, but going into play on September 20th he still needed 22 hits.
+
+The Tigers have 12 games to play...it's a long shot.  But baseball has a way of continuing to make history so Miggy, good luck and Godspeed!
+
+<center>
+
+```{r cabrera hit pace, echo=FALSE, warning=FALSE, message=FALSE}
+
+
+library(tidyverse)
+library(ggthemes)
+library(plotly)
+
+cabmig <- read.csv("X:/OneDrive/02. Data/Baseball Data/Various/STATCAST/Cabrera, Miguel - 09.19.2021.csv")
+
+
+events_list <- unique(cabmig$events)
+hits_list <- c("single", "double", "home_run", "triple")
+
+
+
+mc_hits <- filter(cabmig, events %in% hits_list)
+
+#Hits by date
+mc_hitdate <- mc_hits %>% group_by(game_date) %>% 
+  summarise(hits = n())
+
+#Calculate cumulative hits
+mc_hitdate <- mutate(mc_hitdate, total_hits = cumsum(hits))
+
+#Find # of season days
+days <- as.numeric(as.Date("2021-10-03") - as.Date("2021-04-01"))
+
+#Setup hits pace calculation slope
+hits <- c(0, 134)
+hits_per_day <- 134 / days
+game_date <- seq(as.Date('2021-04-01'), as.Date('2021-10-03'), by = 'days')
+game_date <- as.Date(game_date, format = "%y/%m/%d")
+hits_req <- as.data.frame(cbind(as.Date(game_date, format = "%y/%m/%d"), hits_per_day))
+hits_req <- mutate(hits_req, total_hits = floor(cumsum(hits_per_day)))
+
+
+
+hits_pace <- 
+ggplot(mc_hitdate, aes(as.Date(game_date), total_hits)) +
+  geom_line(color = "#FA4616", size = .75) +
+  #geom_line(data=hits_req, aes(as.Date(game_date), total_hits)) +
+  geom_smooth(data=hits_req, aes(as.Date(game_date), total_hits), color = "#0C2340", se = FALSE, size = .5, linetype = "dashed") +
+  theme_hc() +
+  labs(title = "Miguel Cabrera Hits Pace", subtitle = "Needs 134 Hits to Reach 3,000"  ,x = "Month", y = "Hits")
+
+
+ggplotly(hits_pace, hoverinfo = paste0("Game Date: ", game_date, "<br/>",
+                                       "Hits: ", total_hits)) %>% 
+  config(displayModeBar = FALSE) %>% 
+  layout(title = list(text = paste0('Miguel Cabrera Hits Pace',
+                                    '<br>',
+                                    '<sup>',
+                                    'Needs 134 Hits to Reach 3,000','</sup>')))
+
+```
+
+
+</center>
