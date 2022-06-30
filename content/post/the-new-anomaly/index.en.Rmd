@@ -91,6 +91,7 @@ The median population per state is *`r comma(med_pop21)`*.
 <h3> The Enigma of Public Opinion </h3>
 </center>
 
+
 There are **`r length(bans)`** states that have or will ban abortion, some with exceptions for rape, incest, or the life of the mother.  These states are home to **`r comma(tot_banned)`** Americans, **`r percent(pct_banned)`** of the population.
 
 In a NPR/PBS NewsHour/Marist National Poll^[https://maristpoll.marist.edu/polls/npr-pbs-newshour-marist-national-poll-the-overturning-of-roe-v-wade-june-2022/], **58%** of Americans oppose the Court's decision - **`r comma(tot * .58)` people**. 
