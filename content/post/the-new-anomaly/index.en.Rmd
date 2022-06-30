@@ -9,7 +9,7 @@ tags:
   - Supreme Court
 description: 
 featured: yes
-draft: no
+draft: yes
 toc: no
 codeMaxLines: 10
 codeLineNumbers: no
@@ -134,5 +134,6 @@ While efforts to "pack" the Court are likely to fail and not really worth pursui
 Because we're now stacking minority rule on minority rule.  A Court largely comprised of Justices nominated by presidents who lost the popular vote and confirmed by a Republican-led Senate that routinely represents tens of millions fewer Americans than their counterparts in larger states, is now overturning decades old decisions made by stronger majorities than they garner in their decisions to do so.
 
 That imbalance of power is untenable at best.
+
 
 <break>
