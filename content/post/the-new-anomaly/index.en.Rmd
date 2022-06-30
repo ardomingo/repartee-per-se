@@ -7,7 +7,6 @@ categories:
   - Politics
 tags:
   - Supreme Court
-description: 
 draft: no
 toc: no
 ---
