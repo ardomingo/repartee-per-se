@@ -1,25 +1,12 @@
 ---
 title: The New Anomaly
-author: AR Domingo
+author: 'AR Domingo'
 date: '2022-06-29'
 slug: [the-new-anomaly]
 categories:
   - Politics
 tags:
   - Supreme Court
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-description: 
-<<<<<<< HEAD
-=======
-featured: yes
->>>>>>> b53666c33753793ad47460d60b7e5b760605b885
->>>>>>> bea793a4fcd1cc42eac885a77a616e2716267328
-=======
->>>>>>> 4ec2a77e3f200b73f4d8f509b22eed6dc3a59c94
-draft: no
-toc: no
 ---
 
 
