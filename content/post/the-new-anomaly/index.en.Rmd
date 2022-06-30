@@ -8,12 +8,8 @@ categories:
 tags:
   - Supreme Court
 description: 
-featured: yes
 draft: no
 toc: no
-codeMaxLines: 10
-codeLineNumbers: no
-figurePositionShow: yes
 ---
 
 
