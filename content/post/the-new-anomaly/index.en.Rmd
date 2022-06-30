@@ -3,6 +3,7 @@ title: The New Anomaly
 author: 'AR Domingo'
 date: '2022-06-29'
 slug: [the-new-anomaly]
+draft: no
 categories:
   - Politics
 tags:
