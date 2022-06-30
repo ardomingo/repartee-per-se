@@ -8,6 +8,10 @@ categories:
 tags:
   - Supreme Court
 description: 
+<<<<<<< HEAD
+=======
+featured: yes
+>>>>>>> b53666c33753793ad47460d60b7e5b760605b885
 draft: no
 toc: no
 ---
